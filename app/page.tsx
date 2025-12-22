@@ -10,6 +10,9 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import Image from "next/image";
+import Link from "next/link";
+import { cn } from "@/lib/utils";
+import { CircleArrowRight, ClipboardCheck, ExternalLink } from "lucide-react";
 
 export default function KuickHackLandingPage() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -22,6 +25,7 @@ export default function KuickHackLandingPage() {
     "https://upload.wikimedia.org/wikipedia/commons/5/57/UNICEF_Logo.png",
     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMYeoFykku9zIG1Hq_weECBL5JqDfiRTWMyA&s",
     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSZ9QGNp0toW6tTAccB7uoz_4eNs3i6v9lXQ&s",
+    "https://cdn.stepik.net/media/cache/images/courses/128731/cover_f61hZEg/9ae47ad6d4c068af31b8a494c0397d54.jpg",
   ];
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -230,12 +234,14 @@ export default function KuickHackLandingPage() {
           </div>
 
           {/* CTA Button */}
-          <Button
-            size="lg"
-            className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-6 text-lg animate-slide-up animation-delay-600 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl rounded-xl"
-          >
-            👉 Регистрация
-          </Button>
+          <Link href="registration">
+            <Button
+              size="lg"
+              className="bg-purple-600 cursor-pointer hover:bg-purple-700 text-white px-8 py-6 text-lg animate-slide-up animation-delay-600 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl rounded-xl"
+            >
+              <ExternalLink className="h-5 w-5" /> Регистрация
+            </Button>
+          </Link>
         </div>
       </section>
 
@@ -253,7 +259,7 @@ export default function KuickHackLandingPage() {
             </div>
             <div className="text-center transform hover:scale-105 transition-all duration-300 animate-slide-up animation-delay-1200">
               <div className="text-5xl font-bold bg-gradient-to-r from-yellow-600 to-orange-600 bg-clip-text text-transparent mb-2 animate-count">
-                15000 TJS
+                18000 TJS
               </div>
               <div className="text-gray-600">Призовой фонд</div>
             </div>
@@ -283,12 +289,14 @@ export default function KuickHackLandingPage() {
             <Card className="bg-gradient-to-br from-white to-purple-50 border-gray-200 hover:border-purple-300 transition-all duration-300 transform hover:-translate-y-2 hover:shadow-xl group">
               <CardContent className="p-8">
                 <h3 className="text-2xl font-bold mb-4 text-purple-600 group-hover:scale-105 transition-transform">
-                  Build With AI — это первый AI-first хакатон в Таджикистане
+                  Build With AI — хакатон в Таджикистане
                 </h3>
                 <p className="text-gray-600">
-                  студенты и начинающие IT-специалисты за 2 дня решают реальные
-                  локальные задачи с использованием искусственного интеллекта,
-                  машинного обучения и автоматизации.
+                  Build With AI — это хакатон нового формата, где искусственный
+                  интеллект и автоматизация являются не дополнением, а основой
+                  каждого проекта. За 2 дня участники работают над реальными
+                  задачами бизнеса и общества, создавая AI-продукты с
+                  практической ценностью.
                 </p>
               </CardContent>
             </Card>
@@ -299,8 +307,10 @@ export default function KuickHackLandingPage() {
                   Дать студентам реальный опыт
                 </h3>
                 <p className="text-gray-600 mb-4">
-                  Найди уникальные идеи AI-продукта и решения, которые могут
-                  быть полезны обществу и бизнесу в будущем
+                  Участники погружаются в реальные кейсы от компаний-партнёров и
+                  проходят полный путь создания продукта — от идеи до
+                  работающего прототипа. Это опыт, максимально приближённый к
+                  работе в IT-команде.
                 </p>
                 <div className="inline-flex items-center gap-2 px-4 py-2 bg-yellow-100 text-yellow-700 rounded-full text-sm font-medium animate-bounce-subtle">
                   ⚡ найди решение
@@ -311,12 +321,12 @@ export default function KuickHackLandingPage() {
             <Card className="bg-gradient-to-br from-white to-blue-50 border-gray-200 hover:border-purple-300 transition-all duration-300 transform hover:-translate-y-2 hover:shadow-xl group">
               <CardContent className="p-8">
                 <h3 className="text-2xl font-bold mb-4 text-purple-600 group-hover:scale-105 transition-transform">
-                  Работать с AI
+                  Работа с искусственным интеллектом
                 </h3>
                 <p className="text-gray-600">
-                  Научить работать с AI и автоматизацией в реальных
-                  бизнес-задачах. Подходит всем, кто хочет попробовать свои силы
-                  в IT и AI
+                  Хакатон подойдёт тем, кто хочет научиться использовать AI в
+                  продуктах: генерация контента, анализ данных, автоматизация
+                  процессов, AI-помощники и умные сервисы.
                 </p>
               </CardContent>
             </Card>
@@ -324,12 +334,12 @@ export default function KuickHackLandingPage() {
             <Card className="bg-gradient-to-br from-white to-purple-50 border-gray-200 hover:border-purple-300 transition-all duration-300 transform hover:-translate-y-2 hover:shadow-xl group">
               <CardContent className="p-8">
                 <h3 className="text-2xl font-bold mb-4 text-purple-600 group-hover:scale-105 transition-transform">
-                  Создать проекты для портфолио
+                  Проекты для портфолио и карьерного роста
                 </h3>
                 <p className="text-gray-600">
-                  Представь проекты жюри и менторам, получи ценную обратную
-                  связь и советы по улучшению своих идей. Отобрать лучших
-                  участников для internship и трудоустройства
+                  Участники представляют свои проекты жюри и менторам, получают
+                  обратную связь и рекомендации. Лучшие команды и участники
+                  получают шанс попасть на internship и в компании-партнёры.
                 </p>
                 <div className="mt-4 text-2xl animate-sparkle">✨</div>
               </CardContent>
@@ -405,7 +415,7 @@ export default function KuickHackLandingPage() {
                   </div>
                   <div className="relative z-10">
                     <p className="text-4xl md:text-5xl font-bold mb-2">
-                      TJS 4000
+                      TJS 5000
                     </p>
                     <p className="text-lg text-gray-700">Второе место</p>
                   </div>
@@ -415,7 +425,7 @@ export default function KuickHackLandingPage() {
                 <div className="bg-gradient-to-br from-pink-100 via-rose-100 to-orange-100 rounded-3xl p-8 relative overflow-hidden transform hover:scale-105 transition-all duration-300 shadow-xl md:-mt-4">
                   <div className="relative z-10">
                     <p className="text-5xl md:text-5xl font-bold mb-2">
-                      TJS 9000
+                      TJS 10000
                     </p>
                     <p className="text-xl text-gray-700">Первое место</p>
                   </div>
@@ -425,7 +435,7 @@ export default function KuickHackLandingPage() {
                 <div className="bg-gradient-to-br from-gray-200 to-gray-300 rounded-3xl p-8 relative overflow-hidden transform hover:scale-105 transition-all duration-300 shadow-lg">
                   <div className="relative z-10">
                     <p className="text-4xl md:text-5xl font-bold mb-2">
-                      TJS 2000
+                      TJS 3000
                     </p>
                     <p className="text-lg text-gray-700">Третье место</p>
                   </div>
@@ -478,29 +488,32 @@ export default function KuickHackLandingPage() {
             {[
               {
                 number: 1,
-                title: "Работающий прототип",
-                desc: "Оценивается уникальность идеи, её способность изменить существующие подходы и внедрить новые решения на рынке",
+                title: "Работающий продукт или прототип",
+                desc: "Команда должна представить работающий продукт или прототип, демонстрирующий основную идею и решение выбранной проблемы.",
               },
               {
                 number: 2,
-                title: "Использование AI (LLM / ML / automation)",
-                desc: "Внимание уделяется качеству реализации: архитектура решения, обоснованность выбора технологий и стабильность работы прототипа",
+                title: "Решение реальной задачи",
+                desc: "Проект должен решать понятную проблему пользователя, бизнеса или общества, а не быть абстрактной идеей без практического применения.",
               },
               {
                 number: 3,
-                title: "Prompt engineering (реальные примеры)",
-                desc: "Насколько проект применим в реальных условиях, имеет ли он коммерческий потенциал и возможность дальнейшего развития",
+                title: "Использование AI в продукте",
+                desc: `AI должен быть частью решения:
+например, помогать автоматизировать процессы, анализировать данные, генерировать контент или улучшать пользовательский опыт.`,
               },
               {
                 number: 4,
-                title: "Архитектуру решения",
-                desc: "Удобство использования, интуитивность интерфейса и общее качество взаимодействия пользователя с продуктом",
+                title: "Архитектура и логика решения",
+                desc: `Команда должна объяснить, как устроен продукт:
+как взаимодействуют frontend, backend и AI, почему выбран именно такой подход и такие технологии.`,
               },
 
               {
                 number: "5",
-                title: "Понимание ограничений AI",
-                desc: "Насколько качественно и уместно вы использовали технологии искусственного интеллекта — от идеи до реального применения",
+                title: "Осмысленное использование AI",
+                desc: `Важно показать, зачем именно в проекте используется AI и какую пользу он даёт.
+AI должен улучшать решение задачи, а не быть добавлен формально «для галочки».`,
               },
             ].map((item, index) => (
               <Card
@@ -553,8 +566,8 @@ export default function KuickHackLandingPage() {
                 <div className="text-4xl mb-4">🎓</div>
                 <h3 className="text-2xl font-bold mb-4">Возраст: 16+</h3>
                 <p className="text-gray-600">
-                  К хакатону приглашаются участники от 16 лет и старше.
-                  Регистрация возможна как в составе команды (2–4 человек)
+                  К участию приглашаются участники от 16 лет и старше.
+                  Регистрация возможна только в составе команды (3–4 человека).
                 </p>
               </CardContent>
             </Card>
@@ -567,8 +580,9 @@ export default function KuickHackLandingPage() {
                   Cтуденты и начинающие специалисты
                 </h3>
                 <p className="text-gray-600">
-                  Молодые специалисты, стремящиеся отточить навыки в IT и AI и
-                  работать над реальными задачами
+                  Для тех, кто хочет получить первый практический опыт
+                  разработки, поработать с AI и понять, как создаются реальные
+                  IT-продукты.
                 </p>
               </CardContent>
             </Card>
@@ -580,21 +594,23 @@ export default function KuickHackLandingPage() {
                   Опытные разработчики и дизайнеры
                 </h3>
                 <p className="text-gray-600">
-                  Те, кто хочет прокачать навыки командной разработки и работу с
-                  AI
+                  Подходит для разработчиков и дизайнеров, которые хотят
+                  прокачать навыки командной работы, архитектуры решений и
+                  применения AI в продуктах.
                 </p>
               </CardContent>
             </Card>
 
             <Card className="bg-gray-50 border-gray-200">
               <CardContent className="p-8">
-                <div className="text-4xl mb-4">🧩</div>
+                <div className="text-4xl mb-4">🤝</div>
                 <h3 className="text-2xl font-bold mb-4">
                   Командная разработка
                 </h3>
                 <p className="text-gray-600">
-                  В финале примут участие 12 команд, чтобы сохранить высокий
-                  уровень качества и обеспечить сбалансированные команды.
+                  Хакатон ориентирован на командную работу. В финале участвуют
+                  ограниченное количество команд, чтобы сохранить высокий
+                  уровень качества проектов и менторской поддержки.
                 </p>
               </CardContent>
             </Card>
@@ -612,13 +628,12 @@ export default function KuickHackLandingPage() {
           <div className="grid grid-cols-1 md:grid-cols-1 gap-8 mt-12">
             <Card className="bg-white border-gray-200">
               <CardContent className="p-8">
-                <h3 className="text-3xl font-bold mb-2">Командой</h3>
-                <p className="text-purple-600 text-lg mb-4">до 5 человек</p>
+                <h3 className="text-3xl font-bold mb-2">Командой формат</h3>
+                <p className="text-purple-600 text-lg mb-4"> 3–4 человека</p>
                 <p className="text-gray-600">
-                  Соберите команду единомышленников или приходите с уже
-                  сформированным коллективом. Работайте над проектом сообща,
-                  распределяя роли и задачи, чтобы максимально эффективно
-                  использовать сильные стороны каждого участника
+                  Участники собирают команду единомышленников или приходят уже
+                  готовой командой. Внутри команды распределяются роли и задачи
+                  для эффективной работы над проектом.
                 </p>
                 {/* <div className="flex gap-2 mt-4">
                   <span className="text-purple-600">1</span>
@@ -626,10 +641,52 @@ export default function KuickHackLandingPage() {
                   <span className="text-purple-600">3</span>
                   <span className="text-purple-600">4</span>
                 </div> */}
-                <p className="text-gray-600 mt-4">📅 Длительность: 2 дня</p>
+                {/* <p className="text-gray-600 mt-4">📅 Длительность: 2 дня</p>
                 <p className="text-gray-600">👥 Участники: 12 комманды</p>
                 <p className="text-gray-600">
                   🧩 Формат: командная разработка + AI-менторство
+                </p> */}
+              </CardContent>
+            </Card>
+            <Card className="bg-white border-gray-200">
+              <CardContent className="p-8">
+                <h3 className="text-3xl font-bold mb-2">
+                  ⏱ Длительность — 2 дня
+                </h3>
+                <p className="text-purple-600 text-lg mb-4"> 3–4 январ</p>
+                <p className="text-gray-600">
+                  Хакатон проходит в интенсивном офлайн-формате в Душанбе. Два
+                  дня полной концентрации на разработке, тестировании и
+                  подготовке презентации.
+                </p>
+                {/* <div className="flex gap-2 mt-4">
+                  <span className="text-purple-600">1</span>
+                  <span className="text-purple-600">2</span>
+                  <span className="text-purple-600">3</span>
+                  <span className="text-purple-600">4</span>
+                </div> */}
+                {/* <p className="text-gray-600 mt-4">📅 Длительность: 2 дня</p>
+                <p className="text-gray-600">👥 Участники: 12 комманды</p>
+                <p className="text-gray-600">
+                  🧩 Формат: командная разработка + AI-менторство
+                </p> */}
+              </CardContent>
+            </Card>
+            <Card className="bg-white border-gray-200">
+              <CardContent className="p-8">
+                <h3 className="text-3xl font-bold mb-2">Командная структура</h3>
+                <p className="text-purple-600 text-lg mb-4">
+                  как в IT-компании
+                </p>
+                <p className="text-gray-600">
+                  Командная структура (гибкий формат) Команды формируются
+                  самостоятельно. Участники сами решают, кого брать в команду и
+                  какие роли распределять. Для эффективной работы рекомендуется
+                  собрать сбалансированную команду, в которой есть: участники,
+                  отвечающие за frontend и backend, человек, работающий с AI и
+                  автоматизацией, при необходимости — UX/UI дизайнер. Наличие
+                  всех ролей не является обязательным. Команды могут
+                  адаптировать состав под свою идею и формат проекта.
                 </p>
               </CardContent>
             </Card>
@@ -637,42 +694,40 @@ export default function KuickHackLandingPage() {
             <Card className="bg-white border-gray-200">
               <CardContent className="p-8">
                 <h3 className="text-3xl font-bold mb-2">
-                  Командная структура (как в IT-компании)
+                  Менторство и поддержка
                 </h3>
-                <p className="text-gray-600 font-bold">
-                  Каждая команда состоит из:
+                <p className="text-purple-600 text-lg mb-4">
+                  Ментора (Middle+ Developer)
                 </p>
-                <p className="text-gray-600">- Frontend Developer</p>
-                <p className="text-gray-600">- Backend Developer</p>
-                <p className="text-gray-600">- UX/UI Designer</p>
-                <p className="text-gray-600">- Ментор (Middle+ Developer)</p>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-white border-gray-200">
-              <CardContent className="p-8">
-                <h3 className="text-3xl font-bold mb-2">Менторство</h3>
-
-                <p className="text-gray-600 font-bold">
-                  {" "}
+                {/* <p className="text-gray-600 font-bold">
                   Каждую команду сопровождает практикующий IT-специалист,
-                  который:
+                  который: помогает с архитектурой решения консультирует по
+                  использованию AI проводит code review направляет команду и
+                  помогает уложиться в дедлайны
                 </p>
                 <p className="text-gray-600">
                   - Помогает с архитектурой и AI-логикой
                 </p>
                 <p className="text-gray-600">- Проводит code review</p>
                 <p className="text-gray-600">- Направляет команду</p>
-                <p className="text-gray-600">- Следит за дедлайнами</p>
-                <p className="text-gray-600">- Участвует в защите проекта</p>
+                <p className="text-gray-600">- Следит за дедлайнами</p> */}
+                <p className="text-gray-600">
+                  Каждую команду сопровождает практикующий IT-специалист,
+                  который: помогает с архитектурой решения консультирует по
+                  использованию AI проводит code review направляет команду и
+                  помогает уложиться в дедлайны
+                  <p>
+                    Все менторы — специалисты из SoftClub и компаний-партнёров.
+                  </p>
+                </p>
               </CardContent>
             </Card>
           </div>
 
-          <div className="mt-12 text-center text-2xl font-mono text-gray-400">
+          {/* <div className="mt-12 text-center text-2xl font-mono text-gray-400">
             /&#42; Все менторы — специалисты из SoftClub и компаний-партнёров.
             &#42;/
-          </div>
+          </div> */}
         </div>
       </section>
 
@@ -775,8 +830,9 @@ export default function KuickHackLandingPage() {
               },
               {
                 name: "Хушанг Мирзо",
-                role: "Совладелец FootballPro, TopManager.ai, iProxy, Push.Express, RentAcc, организатор хакатонов",
-                image:"../images/khushang.jpg"
+                role: `Опытный фронтенд-разработчик с более чем 10-летним стажем работы и ведущий фронтенд-разработчик в компании
+KnowledgeCity`,
+                image: "../images/khushang.jpg",
               },
             ].map((person, index) => (
               <Card key={index} className="bg-white border-gray-200">
@@ -1023,12 +1079,14 @@ export default function KuickHackLandingPage() {
               </a>
             </div>
           </div>
-          <Button
-            size="lg"
-            className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-6 text-lg animate-slide-up animation-delay-600 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl rounded-xl"
-          >
-            👉 Регистрация
-          </Button>
+          <Link href="registration">
+            <Button
+              size="lg"
+              className="bg-purple-600 cursor-pointer hover:bg-purple-700 text-white px-8 py-6 text-lg animate-slide-up animation-delay-600 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl rounded-xl"
+            >
+              <ExternalLink className="h-5 w-5" /> Регистрация
+            </Button>
+          </Link>
         </div>
       </section>
 
