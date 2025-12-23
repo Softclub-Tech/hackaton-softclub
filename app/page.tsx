@@ -333,7 +333,7 @@ export default function KuickHackLandingPage() {
         <div className="max-w-6xl mx-auto">
           <div className="relative">
             <div className="absolute -top-10 -left-10 w-32 h-32 bg-gradient-to-br from-purple-400 to-pink-400 rounded-3xl transform rotate-12 opacity-20 animate-float" />
-            <div className="absolute -top-5 -right-10 w-40 h-40 bg-gradient-to-br from-blue-400 to-purple-400 rounded-full opacity-20 animate-float animation-delay-2000" />
+            <div className="absolute -top-5 -right-1 md:-right-10 w-40 h-40 bg-gradient-to-br from-blue-400 to-purple-400 rounded-full opacity-20 animate-float animation-delay-2000" />
 
             <h2 className="text-4xl md:text-5xl font-bold mb-16 text-center relative z-10">
               О <span className="text-purple-600">хакатоне</span>
