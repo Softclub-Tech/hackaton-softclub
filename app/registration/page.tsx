@@ -279,14 +279,14 @@ export default function RegistrationPage() {
       if (
         isEmpty(m.fullName) ||
         isEmpty(m.phone) ||
-        isEmpty(m.githubLink) ||
+        isEmpty(m.githubLink.trim()) ||
         isEmpty(m.linkedinLink) ||
         isEmpty(m.fullTimeParticipationNote)
       ) {
         return setError(`Заполните все поля: Участник ${i + 1}`);
       }
 
-      if (!isValidGithub(m.githubLink)) {
+      if (!isValidGithub(m.githubLink.trim())) {
         return setError(`Некорректный GitHub: Участник ${i + 1}`);
       }
 
@@ -600,7 +600,7 @@ export default function RegistrationPage() {
                       <input
                         className={INPUT_CLASS}
                         placeholder="github.com/username"
-                        value={m.githubLink}
+                        value={m.githubLink.trim()}
                         onChange={(e) =>
                           updateMember(i, "githubLink", e.target.value)
                         }

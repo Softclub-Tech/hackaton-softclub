@@ -77,6 +77,30 @@ const criteria = [
 ];
 
 
+// mentors
+
+const mentors = [
+  {
+    name: "Собир Бобиев",
+    role: "Старший AI-разработчик | Ранее работал в Yandex и Alif",
+    img: "/sozbir.jpg",
+  },
+  {
+    name: "ҷаҳонгир Ҷалолов",
+    role: "CEO of Navbat & Co-Founder of Livo",
+    img: "/jhongir.png",
+  },
+  {
+    name: "Мустафо Файзов",
+    role: "Senior Software engineer at EPAM",
+    img: "/mustafo.png",
+  },
+  {
+    name: "Хушанг Мирзо",
+    role: "Senior Frontend разработчик",
+    img: "/hushang.jpg"
+  },
+];
 
 export default function KuickHackLandingPage() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -705,6 +729,64 @@ export default function KuickHackLandingPage() {
         </div>
       </section>
 
+      <section className="py-16 md:py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          {/* Заголовок секции */}
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-5xl font-extrabold text-gray-900 mb-4">
+              Наши менторы
+            </h2>
+            <p className="text-gray-500 max-w-2xl mx-auto text-lg">
+              Ведущие специалисты индустрии, которые помогут вам довести идеи до
+              результата.
+            </p>
+          </div>
+
+          {/* Сетка менторов */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            {mentors.map((mentor, index) => (
+              <div
+                key={index}
+                className="group relative flex flex-col items-center text-center"
+              >
+                {/* Контейнер фото */}
+                <div className="relative mb-6 w-full aspect-[3/4] overflow-hidden rounded-3xl bg-gray-100 shadow-sm transition-all duration-500 group-hover:shadow-2xl group-hover:shadow-purple-900/10 group-hover:-translate-y-2">
+                  {/* Изображение */}
+                  <img
+                    src={mentor.img}
+                    alt={mentor.name}
+                    className="h-full w-full object-cover object-center transition-transform duration-700 group-hover:scale-110"
+                    onError={(e) => {
+                      // Fallback если фото нет
+                      e.currentTarget.style.display = "none";
+                      e.currentTarget.parentElement?.classList.add(
+                        "flex",
+                        "items-center",
+                        "justify-center"
+                      );
+                      e.currentTarget.parentElement!.innerHTML =
+                        '<span class="text-4xl text-gray-300 font-bold">?</span>';
+                    }}
+                  />
+
+                  {/* Градиент снизу для читаемости (опционально) */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                </div>
+
+                {/* Информация */}
+                <div className="relative z-10 px-2">
+                  <h3 className="text-xl font-bold text-gray-900 mb-1 group-hover:text-purple-600 transition-colors">
+                    {mentor.name}
+                  </h3>
+                  <p className="text-sm font-semibold text-purple-600 uppercase tracking-wide mb-1">
+                    {mentor.role}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
       {/* Timeline */}
       <section className="py-20 px-4">
         <div className="max-w-6xl mx-auto">
@@ -781,7 +863,7 @@ export default function KuickHackLandingPage() {
       </section>
 
       {/* Jury */}
-      <section className="py-20 px-4 bg-gray-50">
+      <section className="py-20 px-4 ">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl md:text-5xl font-bold mb-16 text-center">
             <span className="text-purple-600">Жюри</span> хакатона
