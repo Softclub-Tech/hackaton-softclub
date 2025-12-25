@@ -2,24 +2,28 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { ArrowLeft, CircleArrowRight, Check, AlertCircle } from "lucide-react";
+import {
+  ArrowLeft,
+  Check,
+  AlertCircle,
+  ExternalLink,
+  FileText,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 /* ================= STYLES ================= */
 
-// Define reusable styles for consistency and cleaner JSX
+// Updated: text-base prevents zoom on iOS inputs. Adjusted padding/rounding for mobile.
 const INPUT_CLASS =
-  "w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-base outline-none focus:border-purple-500 focus:bg-white focus:ring-4 focus:ring-purple-100 transition-all placeholder:text-gray-400";
+  "w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3.5 text-base outline-none focus:border-purple-500 focus:bg-white focus:ring-4 focus:ring-purple-100 transition-all placeholder:text-gray-400";
 const LABEL_CLASS = "block mb-2 text-sm font-semibold text-gray-700";
-const HINT_CLASS = "mb-3 text-xs text-gray-500";
+const HINT_CLASS = "mb-3 text-xs text-gray-500 leading-snug";
 
 /* ================= TYPES & LOGIC ================= */
 
 const REGISTRATION_DEADLINE = new Date("2026-01-01T23:55:00");
 
-const isRegistrationClosed = () => {
-  return new Date() > REGISTRATION_DEADLINE;
-};
+const isRegistrationClosed = () => new Date() > REGISTRATION_DEADLINE;
 
 type Member = {
   fullName: string;
@@ -31,7 +35,9 @@ type Member = {
 };
 
 type Stage = {
+  id: string;
   content: string;
+  pdfUrl: string; // frontend only
 };
 
 /* ================= HELPERS ================= */
@@ -57,11 +63,25 @@ function isValidLinkedIn(url: string) {
   return /^https?:\/\/(www\.)?linkedin\.com\/.+/i.test(v);
 }
 
+/* ================= CASES (PDF ONLY IN FRONT) ================= */
+
+const CASES: Omit<Stage, "content">[] = [
+  { id: "case1", pdfUrl: "/pdf/case1.pdf" },
+  { id: "case2", pdfUrl: "/pdf/case2.pdf" },
+  { id: "case3", pdfUrl: "/pdf/case3.pdf" },
+  { id: "case4", pdfUrl: "/pdf/case4.pdf" },
+  { id: "case5", pdfUrl: "/pdf/case5.pdf" },
+  { id: "case6", pdfUrl: "/pdf/case6.pdf" },
+  { id: "case7", pdfUrl: "/pdf/case7.pdf" },
+  { id: "case8", pdfUrl: "/pdf/case8.pdf" },
+];
+
 /* ================= PAGE COMPONENT ================= */
 
 export default function RegistrationPage() {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
   const [teamName, setTeamName] = useState("");
   const [count, setCount] = useState<number>(3);
 
@@ -72,21 +92,25 @@ export default function RegistrationPage() {
   ]);
 
   const [stages, setStages] = useState<Stage[]>(
-    Array.from({ length: 8 }, () => ({ content: "" }))
+    CASES.map((c) => ({ ...c, content: "" }))
   );
+
+  const [submitting, setSubmitting] = useState(false);
 
   /* ===== Sync members with count ===== */
   useEffect(() => {
     setMembers((prev) => {
       const next = [...prev];
+
       if (count > prev.length) {
-        for (let i = prev.length; i < count; i++) {
-          next.push(createEmptyMember(false));
-        }
+        for (let i = prev.length; i < count; i++)
+          next.push(createEmptyMember());
       }
-      if (count < prev.length) {
-        return next.slice(0, count);
-      }
+
+      if (count < prev.length) return next.slice(0, count);
+
+      // Ensure first member remains captain
+      next[0] = { ...next[0], isCapitan: true };
       return next;
     });
   }, [count]);
@@ -101,7 +125,7 @@ export default function RegistrationPage() {
 
   const updateStage = (index: number, value: string) => {
     setStages((prev) =>
-      prev.map((s, i) => (i === index ? { content: value } : s))
+      prev.map((s, i) => (i === index ? { ...s, content: value } : s))
     );
   };
 
@@ -119,6 +143,7 @@ export default function RegistrationPage() {
 
     for (let i = 0; i < members.length; i++) {
       const m = members[i];
+
       if (
         isEmpty(m.fullName) ||
         isEmpty(m.phone) ||
@@ -129,23 +154,27 @@ export default function RegistrationPage() {
         return setError(`Заполните все поля: Участник ${i + 1}`);
       }
 
-      if (!isValidGithub(m.githubLink.trim())) {
+      if (!isValidGithub(m.githubLink)) {
         return setError(`Некорректный GitHub: Участник ${i + 1}`);
       }
 
-      if (!isValidLinkedIn(m.linkedinLink.trim())) {
+      if (!isValidLinkedIn(m.linkedinLink)) {
         return setError(`Некорректный LinkedIn: Участник ${i + 1}`);
       }
     }
 
     for (const s of stages) {
-      if (isEmpty(s.content)) {
-        return setError("Заполните все 8 кейсов");
-      }
+      if (isEmpty(s.content)) return setError("Заполните все 8 кейсов");
     }
 
-    const payload = { name: teamName, count, members, stages };
-    console.log("📦 PAYLOAD:", payload);
+    const payload = {
+      name: teamName,
+      count,
+      members,
+      stages: stages.map((s) => ({ id: s.id, content: s.content })),
+    };
+
+    setSubmitting(true);
 
     try {
       const response = await fetch("http://37.27.29.18:8087/api/teems", {
@@ -159,21 +188,16 @@ export default function RegistrationPage() {
 
       const data = await response.text();
 
-      if (!response.ok) {
-        throw new Error(data || "Request failed");
-      }
+      if (!response.ok) throw new Error(data || "Request failed");
 
-      console.log("Success:", data);
-    } catch (error) {
-      if (error instanceof Error) {
-        console.error("Error:", error.message);
-      } else {
-        console.error("Error:", error);
-      }
+      setIsSubmitted(true);
+      window.scrollTo(0, 0);
+    } catch (err: any) {
+      setError(err?.message || "Ошибка при отправке");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } finally {
+      setSubmitting(false);
     }
-
-    setIsSubmitted(true);
-    window.scrollTo(0, 0);
   };
 
   /* ================= SUCCESS SCREEN ================= */
@@ -181,7 +205,7 @@ export default function RegistrationPage() {
   if (isSubmitted) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-[#FFF7EF] px-4 py-10">
-        <div className="max-w-md w-full bg-white rounded-3xl shadow-xl p-8 md:p-12 text-center animate-in fade-in zoom-in duration-300">
+        <div className="max-w-md w-full bg-white rounded-3xl shadow-xl p-6 md:p-12 text-center animate-in fade-in zoom-in duration-300">
           <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-green-100 text-green-600">
             <Check className="h-8 w-8" />
           </div>
@@ -190,7 +214,7 @@ export default function RegistrationPage() {
             Заявка принята!
           </h1>
 
-          <p className="text-gray-500 mb-8 leading-relaxed">
+          <p className="text-gray-500 mb-8 leading-relaxed text-sm md:text-base">
             Вы успешно зарегистрировали команду <strong>{teamName}</strong>.
             <br className="hidden md:block" /> Мы свяжемся с капитаном после
             завершения отбора.
@@ -209,7 +233,8 @@ export default function RegistrationPage() {
   /* ================= FORM SCREEN ================= */
 
   return (
-    <section className="min-h-screen bg-[#FFF7EF] py-8 px-4 md:py-20 md:px-6">
+    // UPDATED: Padding reduction for mobile (px-3)
+    <section className="min-h-screen bg-[#FFF7EF] py-6 px-3 md:py-20 md:px-6">
       {/* Alert Banner */}
       {isRegistrationClosed() && (
         <div className="max-w-4xl mx-auto mb-6 rounded-2xl border border-red-200 bg-red-50 p-4 flex items-center gap-3 text-red-700 shadow-sm">
@@ -221,8 +246,9 @@ export default function RegistrationPage() {
       )}
 
       {!isRegistrationClosed() && (
-        <div className="max-w-4xl mx-auto bg-white rounded-2xl md:rounded-[2.5rem] shadow-xl shadow-purple-900/5 overflow-hidden">
-          <div className="p-6 md:p-12">
+        <div className="max-w-4xl mx-auto bg-white rounded-[1.5rem] md:rounded-[2.5rem] shadow-xl shadow-purple-900/5 overflow-hidden">
+          {/* UPDATED: Padding reduction inside card (p-5 for mobile) */}
+          <div className="p-5 md:p-12">
             {/* Header */}
             <div className="mb-8 md:mb-12">
               <Link
@@ -236,24 +262,24 @@ export default function RegistrationPage() {
               <h1 className="text-2xl md:text-4xl font-extrabold text-gray-900 mb-3 text-center leading-tight">
                 Регистрация команды
               </h1>
-              <p className="text-center text-sm md:text-base text-gray-500">
+              <p className="text-center text-sm md:text-base text-gray-500 px-2">
                 Hackathon Build With AI 2026 ·{" "}
-                <span className="text-purple-600 font-medium">
+                <span className="text-purple-600 font-medium whitespace-nowrap">
                   только командная регистрация
                 </span>
               </p>
             </div>
 
-            {/* ERROR TOP (Mobile friendly) */}
+            {/* ERROR TOP */}
             {error && (
-              <div className="mb-8 p-4 bg-red-50 border border-red-100 text-red-600 rounded-xl flex items-start gap-3 text-sm animate-pulse">
+              <div className="mb-8 p-4 bg-red-50 border border-red-100 text-red-600 rounded-xl flex items-start gap-3 text-sm">
                 <AlertCircle className="h-5 w-5 shrink-0 mt-0.5" />
                 {error}
               </div>
             )}
 
-            {/* GLOBAL INFO */}
-            <div className="grid md:grid-cols-2 gap-6 mb-10">
+            {/* GLOBAL INFO - UPDATED: Gap adjusted */}
+            <div className="grid md:grid-cols-2 gap-6 md:gap-8 mb-10">
               <div>
                 <label className={LABEL_CLASS}>Название команды</label>
                 <input
@@ -284,28 +310,29 @@ export default function RegistrationPage() {
               </div>
             </div>
 
-            <div className="h-px bg-gray-100 my-10" />
+            <div className="h-px bg-gray-100 my-8 md:my-10" />
 
             {/* MEMBERS LIST */}
             <div className="space-y-6 md:space-y-8">
               {members.map((m, i) => (
                 <div
                   key={i}
-                  className="rounded-2xl border border-gray-100 bg-white p-5 md:p-8 shadow-sm"
+                  // UPDATED: Padding reduction for mobile card
+                  className="rounded-2xl border border-gray-100 bg-white p-4 md:p-8 shadow-sm"
                 >
                   <h3 className="font-bold text-lg mb-6 flex items-center gap-2">
                     <span className="flex h-8 w-8 items-center justify-center rounded-full bg-gray-100 text-sm">
                       {i + 1}
                     </span>
-                    Участник
+                    <span className="text-gray-900">Участник</span>
                     {m.isCapitan && (
-                      <span className="rounded-full bg-purple-100 px-3 py-1 text-xs font-bold text-purple-700 uppercase tracking-wide">
+                      <span className="rounded-full bg-purple-100 px-2.5 py-0.5 text-xs font-bold text-purple-700 uppercase tracking-wide ml-auto md:ml-0">
                         Captain
                       </span>
                     )}
                   </h3>
 
-                  <div className="grid md:grid-cols-2 gap-5">
+                  <div className="grid md:grid-cols-2 gap-4 md:gap-5">
                     <div className="md:col-span-2">
                       <label className={LABEL_CLASS}>ФИО (Полностью)</label>
                       <input
@@ -376,31 +403,76 @@ export default function RegistrationPage() {
               ))}
             </div>
 
-            <div className="h-px bg-gray-100 my-12" />
+            <div className="h-px bg-gray-100 my-10 md:my-12" />
 
-            {/* STAGES */}
+            {/* STAGES + PDF SECTION */}
             <div>
-              <h2 className="text-xl md:text-2xl font-bold mb-2">
-                Описание решений
+              <h2 className="text-xl md:text-2xl font-bold mb-2 text-gray-900">
+                Кейсы + PDF
               </h2>
-              <p className="text-gray-500 text-sm mb-8">
-                Кратко опишите идею для каждого из 8 кейсов
+              <p className="text-gray-500 text-sm mb-8 leading-relaxed">
+                Барои ҳар кейс PDF-ро кушо ва ҷавобро навис.
+                <span className="block mt-1 text-xs text-purple-600 md:hidden">
+                  (Агар PDF дар телефон хуб натобад, тугмаи "Кушодан"-ро зер
+                  кунед)
+                </span>
               </p>
 
-              <div className="space-y-6">
+              <div className="space-y-8">
                 {stages.map((s, i) => (
-                  <div key={i} className="relative">
-                    <label
-                      className={`${LABEL_CLASS} flex items-center justify-between`}
-                    >
-                      <span>Кейс #{i + 1}</span>
-                    </label>
-                    <textarea
-                      className={`${INPUT_CLASS} min-h-[100px]`}
-                      placeholder={`Решение для кейса ${i + 1}...`}
-                      value={s.content}
-                      onChange={(e) => updateStage(i, e.target.value)}
-                    />
+                  <div
+                    key={s.id}
+                    className="rounded-2xl border border-gray-100 bg-white p-4 md:p-6 shadow-sm overflow-hidden"
+                  >
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
+                      <div className="flex items-center gap-2">
+                        <div className="bg-purple-50 p-2 rounded-lg text-purple-600">
+                          <FileText className="w-5 h-5" />
+                        </div>
+                        <label className="text-base font-bold text-gray-800">
+                          Кейс #{i + 1}
+                        </label>
+                      </div>
+
+                      {/* Responsive Button for Mobile */}
+                      <a
+                        href={s.pdfUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-gray-50 text-gray-700 text-sm font-medium hover:bg-gray-100 hover:text-purple-600 transition-colors border border-gray-200 w-full sm:w-auto"
+                      >
+                        <span>Кушодан дар саҳифаи нав</span>
+                        <ExternalLink className="h-3.5 w-3.5" />
+                      </a>
+                    </div>
+
+                    {/* UPDATED PDF IFRAME:
+                        1. increased height for mobile (500px)
+                        2. Added min-w-0 to prevent overflow
+                        3. Added background to hide loading states
+                    */}
+                    <div className="relative w-full h-[500px] md:h-[600px] rounded-xl border border-gray-200 mb-5 bg-gray-50 overflow-hidden">
+                      <iframe
+                        src={s.pdfUrl}
+                        className="w-full h-full object-cover"
+                        title={`Case ${i + 1}`}
+                        loading="lazy"
+                      />
+                    </div>
+
+                    <div className="space-y-2">
+                      <label className="text-sm font-semibold text-gray-700 ml-1">
+                        Варианти ҷавоб:
+                      </label>
+                      <textarea
+                        className={`${INPUT_CLASS} min-h-[140px] text-base leading-relaxed`}
+                        placeholder={`Ҷавоби худро барои кейси ${
+                          i + 1
+                        } дар инҷо нависед...`}
+                        value={s.content}
+                        onChange={(e) => updateStage(i, e.target.value)}
+                      />
+                    </div>
                   </div>
                 ))}
               </div>
@@ -409,7 +481,7 @@ export default function RegistrationPage() {
             {/* FOOTER ACTIONS */}
             <div className="mt-12 pt-8 border-t border-gray-100">
               {error && (
-                <p className="mb-6 text-center text-sm font-medium text-red-500 animate-pulse">
+                <p className="mb-6 text-center text-sm font-medium text-red-500 bg-red-50 p-3 rounded-lg">
                   {error}
                 </p>
               )}
@@ -417,24 +489,19 @@ export default function RegistrationPage() {
               <div className="flex justify-center">
                 <Button
                   onClick={handleSubmit}
-                  disabled={isRegistrationClosed()}
+                  disabled={isRegistrationClosed() || submitting}
                   className="
-                        w-full md:w-auto
-                        h-auto py-4 px-8 md:px-12
-                        rounded-2xl md:rounded-full
-                        bg-purple-600 hover:bg-purple-700
-                        text-white text-lg font-semibold
-                        shadow-xl shadow-purple-200
-                        transition-all hover:scale-[1.02] active:scale-95
-                        disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100
-                        "
+                    w-full md:w-auto
+                    h-auto py-4 px-8 md:px-16
+                    rounded-xl md:rounded-full
+                    bg-purple-600 hover:bg-purple-700
+                    text-white text-lg font-semibold
+                    shadow-xl shadow-purple-200
+                    transition-all hover:scale-[1.02] active:scale-95
+                    disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100
+                  "
                 >
-                  <div className="flex flex-col md:flex-row items-center gap-3">
-                    {/* <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white/20">
-                      <CircleArrowRight className="h-5 w-5" />
-                    </span> */}
-                    <span>Завершить регистрацию</span>
-                  </div>
+                  {submitting ? "Отправка..." : "Завершить регистрацию"}
                 </Button>
               </div>
             </div>
