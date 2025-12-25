@@ -44,6 +44,7 @@ type Stage = {
 type CaseDetail = {
   title: string;
   organizer: string;
+  img: string;
   problem: string;
   goal: string;
   features: string[];
@@ -54,6 +55,7 @@ type CaseDetail = {
 
 const CASE_DETAILS: CaseDetail[] = [
   {
+    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpNzCYn-SOFLque9taT_UwYdRpkwJrCEBnbQ&s",
     title: "AI Listing Studio (Somon.tj)",
     organizer: "Somon.tj",
     problem:
@@ -71,6 +73,7 @@ const CASE_DETAILS: CaseDetail[] = [
     ],
   },
   {
+    img: "https://oriyonbonk.tj/_next/static/media/logo.a6a2c873.svg",
     title: "Smart Deposit Challenge",
     organizer: "Orienbank",
     problem:
@@ -86,6 +89,7 @@ const CASE_DETAILS: CaseDetail[] = [
     ],
   },
   {
+    img: "https://laklakmarket.tj/uploads/all/7mm0HfD0X5A8w91xscfaC6GunQPdP0Ll1b28rkqT.png",
     title: "LakLak AI Assistant",
     organizer: "LakLak Marketplace",
     problem: "Нагрузка на саппорт и низкая конверсия оплат заказов.",
@@ -102,6 +106,7 @@ const CASE_DETAILS: CaseDetail[] = [
     ],
   },
   {
+    img: "https://cdn.stepik.net/media/cache/images/courses/128731/cover_f61hZEg/9ae47ad6d4c068af31b8a494c0397d54.jpg",
     title: "Прогнозирование оттока студентов",
     organizer: "Softclub CRM",
     problem: "Администраторы узнают об уходе студента слишком поздно.",
@@ -113,6 +118,7 @@ const CASE_DETAILS: CaseDetail[] = [
     ],
   },
   {
+    img: "https://cdn.stepik.net/media/cache/images/courses/128731/cover_f61hZEg/9ae47ad6d4c068af31b8a494c0397d54.jpg",
     title: "AI-модуль отбора наставников",
     organizer: "Softclub CRM",
     problem:
@@ -125,6 +131,7 @@ const CASE_DETAILS: CaseDetail[] = [
     ],
   },
   {
+    img: "https://yora.tj/_next/image?url=%2Flogo.webp&w=384&q=75",
     title: "Интеллектуальный подбор клиентов",
     organizer: "Yora.tj",
     problem: "Низкая конверсия и долгий ручной подбор клиентов.",
@@ -136,6 +143,7 @@ const CASE_DETAILS: CaseDetail[] = [
     ],
   },
   {
+    img: "https://oriyonbonk.tj/_next/static/media/logo.a6a2c873.svg",
     title: "AI Factoring Assistant",
     organizer: "Orienbank",
     problem: "Предприниматели не понимают факторинг и считают его сложным.",
@@ -148,6 +156,7 @@ const CASE_DETAILS: CaseDetail[] = [
     constraints: ["Использовать фиктивные данные", "Без сложных интеграций"],
   },
   {
+    img: "https://it-park.tj/wp-content/uploads/2025/03/alif-tech.png",
     title: "Оценка стоимости жилья",
     organizer: "Alif Tech",
     problem: "Сложно определить адекватную рыночную цену квартиры.",
@@ -377,18 +386,38 @@ export default function RegistrationPage() {
             {/* Modal Content */}
             <div className="space-y-6">
               <div>
-                <span className="inline-block px-3 py-1 rounded-full bg-purple-100 text-purple-700 text-xs font-bold tracking-wide mb-2">
+                {/* Тег с номером кейса */}
+                <span className="inline-block px-3 py-1 rounded-full bg-purple-100 text-purple-700 text-xs font-bold tracking-wide mb-3">
                   CASE #{activeCaseIndex + 1}
                 </span>
-                <h2 className="text-2xl md:text-3xl font-bold text-gray-900 leading-tight">
+
+                {/* Заголовок кейса */}
+                <h2 className="text-2xl md:text-3xl font-extrabold text-gray-900 leading-tight mb-6">
                   {CASE_DETAILS[activeCaseIndex].title}
                 </h2>
-                <p className="text-gray-500 font-medium mt-1">
-                  Организатор:{" "}
-                  <span className="text-gray-800">
-                    {CASE_DETAILS[activeCaseIndex].organizer}
-                  </span>
-                </p>
+
+                {/* Карточка владельца кейса */}
+                <div className="flex items-center gap-4 p-4 bg-gray-50 rounded-2xl border border-gray-100 hover:border-purple-200 transition-colors">
+                  {/* Контейнер для логотипа (белый квадрат) */}
+                  <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-xl bg-white border border-gray-200 p-2 shadow-sm flex items-center justify-center">
+                    <img
+                      src={CASE_DETAILS[activeCaseIndex].img}
+                      alt={CASE_DETAILS[activeCaseIndex].organizer}
+                      className="h-full w-full object-contain"
+
+                    />
+                  </div>
+
+                  {/* Текстовая информация */}
+                  <div className="flex flex-col">
+                    <span className="text-xs font-bold uppercase tracking-wider text-gray-400 mb-0.5">
+                      Владелец кейса
+                    </span>
+                    <span className="text-xl font-extrabold text-gray-900 leading-none">
+                      {CASE_DETAILS[activeCaseIndex].organizer}
+                    </span>
+                  </div>
+                </div>
               </div>
 
               <div className="space-y-4 text-sm md:text-base text-gray-700">

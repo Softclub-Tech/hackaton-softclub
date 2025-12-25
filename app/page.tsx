@@ -865,7 +865,7 @@ KnowledgeCity`,
       <section className="py-10 px-4 bg-gradient-to-b from-transparent to-purple-50">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-5xl md:text-7xl font-bold mb-3 text-balance">
-            Hackathon <p className="text-yellow-600">Build With AI (2026)</p>
+            Hackaton <p className="text-yellow-600">Build With AI (2026)</p>
           </h2>
 
           <div className="max-w-4xl mx-auto text-center mb-8">
