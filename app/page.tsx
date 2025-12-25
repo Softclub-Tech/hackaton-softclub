@@ -256,7 +256,7 @@ export default function KuickHackLandingPage() {
         <div className="max-w-4xl mx-auto text-center relative z-10">
           <div className="flex flex-col items-center gap-4 mb-8 animate-fade-in">
             {/* Status Toggle */}
-            <div className="inline-flex items-center bg-gray-200 rounded-full p-1">
+            <div className="inline-flex items-center bg-gray-200 rounded-full p-1 mb-5">
               <button className="px-6 py-2 rounded-full text-sm text-gray-600 transition-all">
                 скоро
               </button>
