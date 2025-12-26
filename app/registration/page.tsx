@@ -73,7 +73,7 @@ const CASE_DETAILS: CaseDetail[] = [
     ],
   },
   {
-    img: "https://oriyonbonk.tj/_next/static/media/logo.a6a2c873.svg",
+    img: "/oriyonbonk.svg",
     title: "Smart Deposit Challenge",
     organizer: "Orienbank",
     problem:
@@ -143,7 +143,7 @@ const CASE_DETAILS: CaseDetail[] = [
     ],
   },
   {
-    img: "https://oriyonbonk.tj/_next/static/media/logo.a6a2c873.svg",
+    img: "/oriyonbonk.svg",
     title: "AI Factoring Assistant",
     organizer: "Orienbank",
     problem: "Предприниматели не понимают факторинг и считают его сложным.",
@@ -404,7 +404,6 @@ export default function RegistrationPage() {
                       src={CASE_DETAILS[activeCaseIndex].img}
                       alt={CASE_DETAILS[activeCaseIndex].organizer}
                       className="h-full w-full object-contain"
-
                     />
                   </div>
 

@@ -5,7 +5,17 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 
 import Link from "next/link";
-import {  BarChart3, Clock, ExternalLink, GraduationCap, Handshake, Laptop, Layers, UserCheck, Users } from "lucide-react";
+import {
+  BarChart3,
+  Clock,
+  ExternalLink,
+  GraduationCap,
+  Handshake,
+  Laptop,
+  Layers,
+  UserCheck,
+  Users,
+} from "lucide-react";
 const items = [
   {
     icon: GraduationCap,
@@ -36,19 +46,16 @@ const items = [
     gradient: "from-orange-500/20 to-red-500/20 text-orange-600",
   },
 ];
-  const logos = [
-    "https://oriyonbonk.tj/_next/static/media/logo.a6a2c873.svg",
-    "https://it-park.tj/wp-content/uploads/2025/03/alif-tech.png",
-    "https://laklakmarket.tj/uploads/all/7mm0HfD0X5A8w91xscfaC6GunQPdP0Ll1b28rkqT.png",
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpNzCYn-SOFLque9taT_UwYdRpkwJrCEBnbQ&s",
-    "https://upload.wikimedia.org/wikipedia/commons/5/57/UNICEF_Logo.png",
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMYeoFykku9zIG1Hq_weECBL5JqDfiRTWMyA&s",
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSZ9QGNp0toW6tTAccB7uoz_4eNs3i6v9lXQ&s",
-    "https://yora.tj/_next/image?url=%2Flogo.webp&w=384&q=75",
-    "https://cdn.stepik.net/media/cache/images/courses/128731/cover_f61hZEg/9ae47ad6d4c068af31b8a494c0397d54.jpg",
-
-  ];
-
+const logos = [
+  "/oriyonbonk.svg",
+  "https://it-park.tj/wp-content/uploads/2025/03/alif-tech.png",
+  "https://laklakmarket.tj/uploads/all/7mm0HfD0X5A8w91xscfaC6GunQPdP0Ll1b28rkqT.png",
+  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpNzCYn-SOFLque9taT_UwYdRpkwJrCEBnbQ&s",
+  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMYeoFykku9zIG1Hq_weECBL5JqDfiRTWMyA&s",
+  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSZ9QGNp0toW6tTAccB7uoz_4eNs3i6v9lXQ&s",
+  "https://yora.tj/_next/image?url=%2Flogo.webp&w=384&q=75",
+  "https://cdn.stepik.net/media/cache/images/courses/128731/cover_f61hZEg/9ae47ad6d4c068af31b8a494c0397d54.jpg",
+];
 
 const criteria = [
   {
@@ -78,29 +85,28 @@ const criteria = [
   },
 ];
 
-
 // mentors
 
 const mentors = [
   {
     name: "Собир Бобиев",
-    role: "Старший AI-разработчик | Ранее работал в Yandex и Alif",
+    role: "Senior Data Scientist в Alif | ex-Yandex",
     img: "/sozbir.jpg",
   },
   {
-    name: "ҷаҳонгир Ҷалолов",
-    role: "CEO of Navbat & Co-Founder of Livo",
+    name: "Ҷаҳонгир Ҷалолов",
+    role: "Сооснователь Livo и Navbat",
     img: "/jhongir.png",
   },
   {
     name: "Мустафо Файзов",
-    role: "Senior Software engineer at EPAM",
+    role: "Ведущий инженер-разработчик программного обеспечения в EPAM, основатель @KOOLAI | ранее: Amazon, Яндекс",
     img: "/mustafo.png",
   },
   {
     name: "Хушанг Мирзо",
-    role: "Senior Frontend разработчик",
-    img: "/hushang.jpg"
+    role: "Старший инженер-разработчик в Knowledge City",
+    img: "/hushang.jpg",
   },
 ];
 
@@ -314,15 +320,35 @@ export default function KuickHackLandingPage() {
             <span className="text-lg">Душанбе | Ориёнбанк</span>
           </div>
 
-          {/* CTA Button */}
-          <Link href="registration">
-            <Button
-              size="lg"
-              className="bg-purple-600 cursor-pointer hover:bg-purple-700 text-white px-8 py-6 text-lg animate-slide-up animation-delay-600 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl rounded-xl"
+          {/* CTA Buttons */}
+          <div className="flex flex-col justify-center sm:flex-row gap-4 mt-6">
+            {/* Participant Registration */}
+            <Link href="/registration">
+              <Button
+                size="lg"
+                className="bg-purple-600 cursor-pointer hover:bg-purple-700 text-white px-8 py-6 text-lg animate-slide-up animation-delay-600 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl rounded-xl w-full sm:w-auto"
+              >
+                <ExternalLink className="h-5 w-5 mr-2" />
+                Регистрация участника
+              </Button>
+            </Link>
+
+            {/* Visitor Application */}
+            <Link
+              href="https://forms.gle/z9FMUQmSTpXuMY2g8"
+              target="_blank"
+              rel="noopener noreferrer"
             >
-              <ExternalLink className="h-5 w-5" /> Регистрация
-            </Button>
-          </Link>
+              <Button
+                size="lg"
+                variant="outline"
+                className="border-gray-400 cursor-pointer text-gray-300 hover:text-black bg-gray-800 px-8 py-6 text-lg animate-slide-up animation-delay-700 transform hover:scale-105 transition-all duration-300 rounded-xl w-full sm:w-auto"
+              >
+                <ExternalLink className="h-5 w-5 mr-2" />
+                Заявка на посещение
+              </Button>
+            </Link>
+          </div>
         </div>
       </section>
 
@@ -975,14 +1001,35 @@ KnowledgeCity`,
               </a>
             </div>
           </div>
-          <Link href="registration">
-            <Button
-              size="lg"
-              className="bg-purple-600 cursor-pointer hover:bg-purple-700 text-white px-8 py-6 text-lg animate-slide-up animation-delay-600 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl rounded-xl"
+          {/* CTA Buttons */}
+          <div className="flex flex-col justify-center sm:flex-row gap-4 mt-6">
+            {/* Participant Registration */}
+            <Link href="/registration">
+              <Button
+                size="lg"
+                className="bg-purple-600 cursor-pointer hover:bg-purple-700 text-white px-8 py-6 text-lg animate-slide-up animation-delay-600 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl rounded-xl w-full sm:w-auto"
+              >
+                <ExternalLink className="h-5 w-5 mr-2" />
+                Регистрация участника
+              </Button>
+            </Link>
+
+            {/* Visitor Application */}
+            <Link
+              href="https://forms.gle/z9FMUQmSTpXuMY2g8"
+              target="_blank"
+              rel="noopener noreferrer"
             >
-              <ExternalLink className="h-5 w-5" /> Регистрация
-            </Button>
-          </Link>
+              <Button
+                size="lg"
+                variant="outline"
+                className="border-gray-400 cursor-pointer text-gray-300 hover:text-black bg-gray-800 px-8 py-6 text-lg animate-slide-up animation-delay-700 transform hover:scale-105 transition-all duration-300 rounded-xl w-full sm:w-auto"
+              >
+                <ExternalLink className="h-5 w-5 mr-2" />
+                Заявка на посещение
+              </Button>
+            </Link>
+          </div>
         </div>
       </section>
     </main>
