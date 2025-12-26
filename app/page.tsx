@@ -95,12 +95,12 @@ const mentors = [
   },
   {
     name: "Ҷаҳонгир Ҷалолов",
-    role: "Сооснователь Livo и Navbat",
+    role: "Сооснователь  Livo и \n Navbat",
     img: "/jhongir.png",
   },
   {
     name: "Мустафо Файзов",
-    role: "Ведущий инженер-разработчик программного обеспечения в EPAM, основатель @KOOLAI | ранее: Amazon, Яндекс",
+    role: " инженер-разработчик в EPAM, основатель @KOOLAI | ранее: Amazon, Яндекс",
     img: "/mustafo.png",
   },
   {
@@ -321,7 +321,7 @@ export default function KuickHackLandingPage() {
           </div>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col justify-center sm:flex-row gap-4 mt-6">
+          <div className="flex flex-col sm:flex-row justify-center gap-6 mt-6">
             {/* Participant Registration */}
             <Link href="/registration">
               <Button
@@ -329,8 +329,12 @@ export default function KuickHackLandingPage() {
                 className="bg-purple-600 cursor-pointer hover:bg-purple-700 text-white px-8 py-6 text-lg animate-slide-up animation-delay-600 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl rounded-xl w-full sm:w-auto"
               >
                 <ExternalLink className="h-5 w-5 mr-2" />
-                Регистрация участника
+                Регистрация участников команды
               </Button>
+              <p className="text-sm text-gray-400 whitespace-pre-line mt-2 text-center ">
+                Мероприятие длится 2 дня • по итогам {"\n"} отбора участвуют 8
+                команд
+              </p>
             </Link>
 
             {/* Visitor Application */}
@@ -345,8 +349,12 @@ export default function KuickHackLandingPage() {
                 className="border-gray-400 cursor-pointer text-gray-300 hover:text-black bg-gray-800 px-8 py-6 text-lg animate-slide-up animation-delay-700 transform hover:scale-105 transition-all duration-300 rounded-xl w-full sm:w-auto"
               >
                 <ExternalLink className="h-5 w-5 mr-2" />
-                Заявка на посещение
+                Заявка на посещение первого дня{" "}
               </Button>
+              <p className="text-sm whitespace-pre-line text-center text-gray-400 mt-2  ">
+                Посещение на несколько часов • по приглашению • {" \n"} ответ по
+                телефону
+              </p>
             </Link>
           </div>
         </div>
@@ -806,7 +814,7 @@ export default function KuickHackLandingPage() {
                   <h3 className="text-xl font-bold text-gray-900 mb-1 group-hover:text-purple-600 transition-colors">
                     {mentor.name}
                   </h3>
-                  <p className="text-sm font-semibold text-purple-600 uppercase tracking-wide mb-1">
+                  <p className="text-sm whitespace-pre-line font-semibold text-purple-600 uppercase tracking-wide mb-1">
                     {mentor.role}
                   </p>
                 </div>
@@ -828,7 +836,7 @@ export default function KuickHackLandingPage() {
                 date: "3 января 2026",
                 title: "День 1",
                 desc: `
-               08:30 – Регистрация участников и демонстрация Humanoid-робота 
+               08:30 – Регистрация участников и демонстрация Humanoid-робота
 09:30 – Открытие хакатона и цели мероприятия (15 минут)
 ●	Ориенбанк — 3 мин
 ●	SoftClub — 3 мин
@@ -903,33 +911,29 @@ export default function KuickHackLandingPage() {
             <span className="text-purple-600">Жюри</span> хакатона
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
+                image: "/kamaridin.jpg",
+                name: "Уринов Қамариддин",
+                role: "Заместитель директора — начальник отдела разработки информационных систем Департамента информационных технологий",
+              },
+              {
+                image: "/murod.png",
                 name: "Мурод Ҳайдаров",
-                role: "CTO проектов Likepost, Рестомания, Avoloan, владелец KuickTech",
-                chairman: true,
+                role: "Старший инженер-программист более 10 лет опыта, бывший CTO vc.ru",
               },
               {
-                name: "Мустафо Файзов",
-                role: "Senior Python Engineer\nFinTech & AI & Web3",
-              },
-              {
-                name: "Усмон Мирализода",
-                role: "Директор центра цифровизации Margulan University, член-корреспондент Международной Академии информатизации (МАИН)",
-              },
-              {
-                name: "Хушанг Мирзо",
-                role: `Опытный фронтенд-разработчик с более чем 10-летним стажем работы и ведущий фронтенд-разработчик в компании
-KnowledgeCity`,
-                image: "../images/khushang.jpg",
+                image: "/sherali.png",
+                name: "Шерали Джурабаев",
+                role: "региональный директор Sky Central Asia, маркетолог, предприниматель",
               },
             ].map((person, index) => (
               <Card key={index} className="bg-white border-gray-200">
                 <CardContent className="p-6 text-center">
-                  <div className="w-32 h-32 mx-auto mb-4 bg-gray-200 rounded-full">
+                  <div className="w-36 h-36 mx-auto mb-4 bg-gray-200 rounded-full">
                     <img
-                      className="w-32 h-32 mx-auto mb-4 rounded-full"
+                      className="w-36 h-36 mx-auto mb-4 rounded-full"
                       src={person.image}
                       alt="icon"
                     />
@@ -945,11 +949,6 @@ KnowledgeCity`,
                   <p className="text-sm text-gray-600 whitespace-pre-line">
                     {person.role}
                   </p>
-                  {person.chairman && (
-                    <p className="text-xs text-purple-600 mt-2">
-                      {/* председатель жюри */}
-                    </p>
-                  )}
                 </CardContent>
               </Card>
             ))}
@@ -1008,7 +1007,7 @@ KnowledgeCity`,
             </div>
           </div>
           {/* CTA Buttons */}
-          <div className="flex flex-col justify-center sm:flex-row gap-4 mt-6">
+          <div className="flex flex-col sm:flex-row justify-center gap-6 mt-6">
             {/* Participant Registration */}
             <Link href="/registration">
               <Button
@@ -1016,8 +1015,12 @@ KnowledgeCity`,
                 className="bg-purple-600 cursor-pointer hover:bg-purple-700 text-white px-8 py-6 text-lg animate-slide-up animation-delay-600 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl rounded-xl w-full sm:w-auto"
               >
                 <ExternalLink className="h-5 w-5 mr-2" />
-                Регистрация участника
+                Регистрация участников команды
               </Button>
+              <p className="text-sm text-gray-400 whitespace-pre-line mt-2 text-center ">
+                Мероприятие длится 2 дня • по итогам {"\n"} отбора участвуют 8
+                команд
+              </p>
             </Link>
 
             {/* Visitor Application */}
@@ -1032,8 +1035,12 @@ KnowledgeCity`,
                 className="border-gray-400 cursor-pointer text-gray-300 hover:text-black bg-gray-800 px-8 py-6 text-lg animate-slide-up animation-delay-700 transform hover:scale-105 transition-all duration-300 rounded-xl w-full sm:w-auto"
               >
                 <ExternalLink className="h-5 w-5 mr-2" />
-                Заявка на посещение
+                Заявка на посещение первого дня{" "}
               </Button>
+              <p className="text-sm whitespace-pre-line text-center text-gray-400 mt-2  ">
+                Посещение на несколько часов • по приглашению • {" \n"} ответ по
+                телефону
+              </p>
             </Link>
           </div>
         </div>
