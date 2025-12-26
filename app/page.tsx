@@ -125,7 +125,7 @@ const mentors = [
   {
     name: "Хушанг Мирзо",
     role: "Старший инженер-разработчик в Knowledge City",
-    img: "/images/Khushang.jpg",
+    img: "/khushang.jpg",
   },
 ];
 
@@ -384,7 +384,7 @@ export default function KuickHackLandingPage() {
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="text-center transform hover:scale-105 transition-all duration-300 animate-slide-up animation-delay-1000">
-              <div className="text-5xl font-bold text-purple-600 mb-2 animate-count">
+              <div className="text-4xl font-bold text-purple-600 mb-2 animate-count">
                 100+
               </div>
               <div className="text-gray-600">
@@ -392,15 +392,17 @@ export default function KuickHackLandingPage() {
               </div>
             </div>
             <div className="text-center transform hover:scale-105 transition-all duration-300 animate-slide-up animation-delay-1200">
-              <div className="text-5xl font-bold bg-gradient-to-r from-yellow-600 to-orange-600 bg-clip-text text-transparent mb-2 animate-count">
-                10000 TJS
+              <div className="text-4xl font-bold bg-gradient-to-r from-yellow-600 to-orange-600 bg-clip-text text-transparent mb-2 animate-count">
+                18 000 TJS
               </div>
               <div className="text-gray-600">Призовой фонд</div>
             </div>
             <div className="text-center transform hover:scale-105 transition-all duration-300 animate-slide-up animation-delay-1400">
-              <div className="text-5xl font-bold text-green-600 mb-2">CEO</div>
+              <div className="text-4xl font-bold text-green-600 mb-2">
+                Эксперты IT
+              </div>
               <div className="text-gray-600">
-                Эксперты — CEO международных стартапов
+                Эксперты — IT-бизнеса международных стартапов
               </div>
             </div>
           </div>
@@ -955,8 +957,6 @@ export default function KuickHackLandingPage() {
                     </div>
                   </div>
                 </div>
-
-
               </div>
             ))}
           </div>

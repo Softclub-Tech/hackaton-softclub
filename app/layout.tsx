@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     "3 января 2026",
     "4 января 2026",
     "SoftClub",
-   
+
     "менторство",
     "прототип",
     "стартап",
@@ -53,7 +53,7 @@ export const metadata: Metadata = {
       "Офлайн хакатон дар Душанбе (Ориёнбанк), 3–4 январи 2026. Командаҳо 3–4 нафар. AI маҳсулот, менторство, demo ва ҷоизаҳо то 10 000 TJS.",
     images: [
       {
-        url: "/ai14.svg", 
+        url: "/ai14.svg",
         width: 1200,
         height: 630,
         alt: "Build With AI 2026 — Hackathon",
