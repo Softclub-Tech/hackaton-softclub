@@ -46,6 +46,25 @@ const items = [
     gradient: "from-orange-500/20 to-red-500/20 text-orange-600",
   },
 ];
+
+
+const juryMembers = [
+  {
+    image: "/kamaridin.jpg",
+    name: "Уринов Қамариддин",
+    role: "Заместитель директора — начальник отдела разработки информационных систем ДИТ",
+  },
+  {
+    image: "/sherali.png",
+    name: "Шерали Джурабаев",
+    role: "Региональный директор Sky Central Asia, маркетолог, предприниматель",
+  },
+  {
+    image: "/murod.png",
+    name: "Мурод Ҳайдаров",
+    role: "Старший инженер-программист (10+ лет), бывший CTO vc.ru",
+  },
+];
 const logos = [
   "/oriyonbonk.svg",
   "https://it-park.tj/wp-content/uploads/2025/03/alif-tech.png",
@@ -91,7 +110,7 @@ const mentors = [
   {
     name: "Собир Бобиев",
     role: "Senior Data Scientist в Alif | ex-Yandex",
-    img: "/sozbir.jpg",
+    img: "/sobir.jpg",
   },
   {
     name: "Ҷаҳонгир Ҷалолов",
@@ -106,7 +125,7 @@ const mentors = [
   {
     name: "Хушанг Мирзо",
     role: "Старший инженер-разработчик в Knowledge City",
-    img: "/hushang.jpg",
+    img: "/images/Khushang.jpg",
   },
 ];
 
@@ -779,44 +798,32 @@ export default function KuickHackLandingPage() {
           </div>
 
           {/* Сетка менторов */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {mentors.map((mentor, index) => (
               <div
                 key={index}
-                className="group relative flex flex-col items-center text-center"
+                className="group relative h-[500px] justify-center w-full overflow-hidden rounded-[2rem] bg-gray-100 cursor-pointer"
               >
-                {/* Контейнер фото */}
-                <div className="relative mb-6 w-full aspect-[3/4] overflow-hidden rounded-3xl bg-gray-100 shadow-sm transition-all duration-500 group-hover:shadow-2xl group-hover:shadow-purple-900/10 group-hover:-translate-y-2">
-                  {/* Изображение */}
-                  <img
-                    src={mentor.img}
-                    alt={mentor.name}
-                    className="h-full w-full object-cover object-center transition-transform duration-700 group-hover:scale-110"
-                    onError={(e) => {
-                      // Fallback если фото нет
-                      e.currentTarget.style.display = "none";
-                      e.currentTarget.parentElement?.classList.add(
-                        "flex",
-                        "items-center",
-                        "justify-center"
-                      );
-                      e.currentTarget.parentElement!.innerHTML =
-                        '<span class="text-4xl text-gray-300 font-bold">?</span>';
-                    }}
-                  />
+                {/* Background Image */}
+                <img
+                  src={mentor.img}
+                  alt={mentor.name}
+                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                />
 
-                  {/* Градиент снизу для читаемости (опционально) */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                </div>
+                {/* Modern Gradient Overlay (Always visible but darker on hover) */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-300" />
 
-                {/* Информация */}
-                <div className="relative z-10 px-2">
-                  <h3 className="text-xl font-bold text-gray-900 mb-1 group-hover:text-purple-600 transition-colors">
-                    {mentor.name}
-                  </h3>
-                  <p className="text-sm whitespace-pre-line font-semibold text-purple-600 uppercase tracking-wide mb-1">
-                    {mentor.role}
-                  </p>
+                {/* Floating Info Card - Premium Dark Glass */}
+                <div className="absolute bottom-4 inset-x-4 p-5 translate-y-2 group-hover:translate-y-0 transition-all duration-300 backdrop-blur-xl bg-black/40 rounded-2xl border border-white/10 shadow-lg shadow-black/20">
+                  <div className="border-l-4 border-purple-500 pl-4">
+                    <h3 className="text-xl font-bold text-white mb-1">
+                      {mentor.name}
+                    </h3>
+                    <p className="text-purple-200 text-[12px] font-medium  uppercase opacity-90">
+                      {mentor.role}
+                    </p>
+                  </div>
                 </div>
               </div>
             ))}
@@ -904,53 +911,54 @@ export default function KuickHackLandingPage() {
         </div>
       </section>
 
-      {/* Jury */}
-      <section className="py-20 px-4 ">
+      <section className="py-20 px-4 bg-gray-50">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-bold mb-16 text-center">
+          <h2 className="text-4xl md:text-5xl font-bold mb-16 text-center text-gray-900">
             <span className="text-purple-600">Жюри</span> хакатона
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              {
-                image: "/kamaridin.jpg",
-                name: "Уринов Қамариддин",
-                role: "Заместитель директора — начальник отдела разработки информационных систем Департамента информационных технологий",
-              },
-              {
-                image: "/murod.png",
-                name: "Мурод Ҳайдаров",
-                role: "Старший инженер-программист более 10 лет опыта, бывший CTO vc.ru",
-              },
-              {
-                image: "/sherali.png",
-                name: "Шерали Джурабаев",
-                role: "региональный директор Sky Central Asia, маркетолог, предприниматель",
-              },
-            ].map((person, index) => (
-              <Card key={index} className="bg-white border-gray-200">
-                <CardContent className="p-6 text-center">
-                  <div className="w-36 h-36 mx-auto mb-4 bg-gray-200 rounded-full">
-                    <img
-                      className="w-36 h-36 mx-auto mb-4 rounded-full"
-                      src={person.image}
-                      alt="icon"
-                    />
-                  </div>
+            {juryMembers.map((person, index) => (
+              <div key={index} className="group relative">
+                {/* Image Container - Vertical Rectangle */}
+                <div className="relative h-80 w-full overflow-hidden rounded-2xl shadow-lg">
+                  <img
+                    src={person.image}
+                    alt={person.name}
+                    className={`h-full w-full ${
+                      index == 0 ? " object-fill" : "object-cover"
+                    }  transition-transform duration-700 group-hover:scale-110`}
+                    onError={(e) => {
+                      // Fallback если фото нет
+                      e.currentTarget.style.display = "none";
+                      e.currentTarget.parentElement?.classList.add(
+                        "flex",
+                        "items-center",
+                        "justify-center"
+                      );
+                      e.currentTarget.parentElement!.innerHTML =
+                        '<span class="text-4xl text-gray-300 font-bold">?</span>';
+                    }}
+                  />
+                  {/* Gradient Overlay for Text Readability */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-90"></div>
 
-                  <h3 className="text-xl font-bold mb-2">
-                    {person.name.split(" ")[0]}
-                    <br />
-                    <span className="text-purple-600">
-                      {person.name.split(" ")[1]}
-                    </span>
-                  </h3>
-                  <p className="text-sm text-gray-600 whitespace-pre-line">
+                  {/* Text overlay positioned on the image */}
+                  <div className="absolute bottom-0 left-0 w-full p-6 text-white translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                    <h3 className="text-xl font-bold leading-tight mb-2">
+                      {person.name}
+                    </h3>
+                    <div className="h-1 w-10 bg-purple-500 rounded mb-2"></div>
+                  </div>
+                </div>
+
+                {/* Role Text (Outside image for readability) */}
+                <div className="mt-4 px-2">
+                  <p className="text-sm text-gray-600 leading-relaxed font-medium">
                     {person.role}
                   </p>
-                </CardContent>
-              </Card>
+                </div>
+              </div>
             ))}
           </div>
         </div>
