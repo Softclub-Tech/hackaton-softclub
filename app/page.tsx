@@ -173,9 +173,8 @@ export default function KuickHackLandingPage() {
             <div
               className="absolute top-20 right-20 w-64 h-64 animate-float"
               style={{
-                transform: `translate(${mousePosition.x * 0.5}px, ${
-                  mousePosition.y * 0.5
-                }px)`,
+                transform: `translate(${mousePosition.x * 0.5}px, ${mousePosition.y * 0.5
+                  }px)`,
               }}
             >
               <div className="relative w-full h-full">
@@ -211,9 +210,8 @@ export default function KuickHackLandingPage() {
             <div
               className="absolute top-1/3 right-10 w-32 h-48 animate-float animation-delay-2000"
               style={{
-                transform: `translate(${mousePosition.x * 0.3}px, ${
-                  mousePosition.y * 0.7
-                }px) rotate(15deg)`,
+                transform: `translate(${mousePosition.x * 0.3}px, ${mousePosition.y * 0.7
+                  }px) rotate(15deg)`,
               }}
             >
               <div className="w-full h-full bg-gradient-to-br from-red-400 to-orange-500 rounded-full shadow-2xl opacity-90" />
@@ -223,9 +221,8 @@ export default function KuickHackLandingPage() {
             <div
               className="absolute bottom-1/3 right-32 w-24 h-24 animate-float animation-delay-4000"
               style={{
-                transform: `translate(${mousePosition.x * 0.6}px, ${
-                  mousePosition.y * 0.4
-                }px) rotateX(30deg) rotateY(30deg)`,
+                transform: `translate(${mousePosition.x * 0.6}px, ${mousePosition.y * 0.4
+                  }px) rotateX(30deg) rotateY(30deg)`,
               }}
             >
               <div className="w-full h-full bg-white rounded-lg shadow-2xl border border-gray-200" />
@@ -235,9 +232,8 @@ export default function KuickHackLandingPage() {
             <div
               className="absolute bottom-20 right-20 w-32 h-32 animate-float animation-delay-1000"
               style={{
-                transform: `translate(${mousePosition.x * 0.4}px, ${
-                  mousePosition.y * 0.6
-                }px)`,
+                transform: `translate(${mousePosition.x * 0.4}px, ${mousePosition.y * 0.6
+                  }px)`,
               }}
             >
               <svg
@@ -270,9 +266,8 @@ export default function KuickHackLandingPage() {
             <div
               className="absolute top-1/2 right-5 w-16 h-16 bg-gradient-to-br from-orange-400 to-orange-500 rounded-full shadow-xl animate-float animation-delay-3000"
               style={{
-                transform: `translate(${mousePosition.x * 0.8}px, ${
-                  mousePosition.y * 0.2
-                }px)`,
+                transform: `translate(${mousePosition.x * 0.8}px, ${mousePosition.y * 0.2
+                  }px)`,
               }}
             />
           </div>
@@ -927,9 +922,8 @@ export default function KuickHackLandingPage() {
                   <img
                     src={person.image}
                     alt={person.name}
-                    className={`h-full w-full ${
-                      index == 0 ? " object-fill" : "object-cover"
-                    }  transition-transform duration-700 group-hover:scale-110`}
+                    className={`h-full w-full ${index == 0 ? " object-fill" : "object-cover"
+                      }  transition-transform duration-700 group-hover:scale-110`}
                     onError={(e) => {
                       // Fallback если фото нет
                       e.currentTarget.style.display = "none";

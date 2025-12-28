@@ -303,7 +303,7 @@ export default function RegistrationPage() {
       name: teamName,
       count,
       members,
-      stages: stages.map((s) => ({ id: s.id, content: s.content })),
+      stages: stages.map((s) => ({  content: s.content })),
     };
 
     setSubmitting(true);
