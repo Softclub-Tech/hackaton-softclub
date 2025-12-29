@@ -58,7 +58,7 @@ const speakers: Speaker[] = [
     id: "7",
     name: "Рустам Гулов",
     role: "Эксперт по цифровым коммуникациям и ИИ",
-    company: "",
+    company: "Предпринимател",
     image: "/rustam.jpg",
     label: "mentor",
   },
