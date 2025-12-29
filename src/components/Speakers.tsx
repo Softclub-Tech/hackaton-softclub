@@ -17,7 +17,7 @@ const speakers: Speaker[] = [
     name: "Мустафо Файзов",
     role: "Lead Engineer",
     company: "EPAM, основатель @KOOLAI | ранее: Amazon, Яндекс",
-    image: "https://buildwithai.softclub.tj/mustafo.png",
+    image: "/mustafo.png",
     label: ["speaker", "mentor"],
   },
   {
@@ -25,7 +25,7 @@ const speakers: Speaker[] = [
     name: "Собир Бобиев",
     role: "Senior Data Scientist",
     company: "Alif | ex-Yandex",
-    image: "https://buildwithai.softclub.tj/sobir.jpg",
+    image: "/sobir.jpg",
     label: "mentor",
   },
   {
@@ -33,7 +33,7 @@ const speakers: Speaker[] = [
     name: "Ҷаҳонгир Ҷалолов",
     role: "Сооснователь",
     company: "Livo и Navbat",
-    image: "https://buildwithai.softclub.tj/jhongir.png",
+    image: "/jahongir.png",
     label: "mentor",
   },
   {
@@ -41,7 +41,7 @@ const speakers: Speaker[] = [
     name: "Хушанг Мирзо",
     role: "Старший инженер-разработчик",
     company: "Knowledge City",
-    image: "https://buildwithai.softclub.tj/khushang.jpg",
+    image: "/hushang.png",
     label: "mentor",
   },
 
