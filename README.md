@@ -1,30 +1,71 @@
-# React Vite JS clone
+# Build with AI
 
-*Automatically synced with your [v0.app](https://v0.app) deployments*
+A modern React application built with Vite and TypeScript, ready for deployment on Vercel.
 
-[![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?style=for-the-badge&logo=vercel)](https://vercel.com/najibulloshamsudinovs-projects/v0-react-vite-js-clone)
-[![Built with v0](https://img.shields.io/badge/Built%20with-v0.app-black?style=for-the-badge)](https://v0.app/chat/vTyrdCnq0c3)
+## Getting Started
 
-## Overview
+### Install Dependencies
 
-This repository will stay in sync with your deployed chats on [v0.app](https://v0.app).
-Any changes you make to your deployed app will be automatically pushed to this repository from [v0.app](https://v0.app).
+```bash
+npm install
+```
 
-## Deployment
+### Development
 
-Your project is live at:
+Run the development server:
 
-**[https://vercel.com/najibulloshamsudinovs-projects/v0-react-vite-js-clone](https://vercel.com/najibulloshamsudinovs-projects/v0-react-vite-js-clone)**
+```bash
+npm run dev
+```
 
-## Build your app
+The app will be available at `http://localhost:5173`
 
-Continue building your app on:
+### Build
 
-**[https://v0.app/chat/vTyrdCnq0c3](https://v0.app/chat/vTyrdCnq0c3)**
+Build for production:
 
-## How It Works
+```bash
+npm run build
+```
 
-1. Create and modify your project using [v0.app](https://v0.app)
-2. Deploy your chats from the v0 interface
-3. Changes are automatically pushed to this repository
-4. Vercel deploys the latest version from this repository
+The production build will be in the `dist` directory.
+
+### Preview
+
+Preview the production build locally:
+
+```bash
+npm run preview
+```
+
+## Deployment to Vercel
+
+1. Push your code to a Git repository (GitHub, GitLab, or Bitbucket)
+2. Import your repository in [Vercel](https://vercel.com)
+3. Vercel will automatically detect the Vite configuration and deploy
+
+The `vercel.json` file is already configured for optimal Vercel deployment.
+
+## Tech Stack
+
+- **React 18** - UI library
+- **TypeScript** - Type safety
+- **Vite** - Build tool and dev server
+- **Tailwind CSS** - Utility-first CSS framework
+
+## Project Structure
+
+```
+├── src/
+│   ├── components/     # React components
+│   ├── App.tsx        # Main app component
+│   ├── main.tsx       # Entry point
+│   └── index.css      # Global styles
+├── index.html         # HTML template
+├── vite.config.ts     # Vite configuration
+├── tsconfig.json      # TypeScript configuration
+└── vercel.json        # Vercel deployment config
+```
+
+
+

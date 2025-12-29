@@ -1,0 +1,85 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-color: #000000;
+  --accent-green: #22c55e;
+}
+
+body {
+  background-color: var(--bg-color);
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6, .font-heading {
+  font-family: 'Unbounded', sans-serif;
+}
+
+.font-mono {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* Noise Texture Overlay */
+.bg-noise {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 40;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Corner Binary Matrix Texture */
+.bg-corners-matrix {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-repeat: no-repeat;
+  background-image: 
+    url("data:image/svg+xml,%3Csvg width='300' height='150' viewBox='0 0 300 150' xmlns='http://www.w3.org/2000/svg'%3E%3Ctext x='0' y='30' font-family='monospace' font-weight='bold' font-size='24' fill='%2322c55e' opacity='0.07'%3E1010101010101010%3C/text%3E%3Ctext x='0' y='60' font-family='monospace' font-weight='bold' font-size='24' fill='%2322c55e' opacity='0.07'%3E0101010101010101%3C/text%3E%3Ctext x='0' y='90' font-family='monospace' font-weight='bold' font-size='24' fill='%2322c55e' opacity='0.07'%3E1000110100110010%3C/text%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg width='300' height='150' viewBox='0 0 300 150' xmlns='http://www.w3.org/2000/svg'%3E%3Ctext x='100%25' y='30' text-anchor='end' font-family='monospace' font-weight='bold' font-size='24' fill='%2322c55e' opacity='0.07'%3E1010101010101010%3C/text%3E%3Ctext x='100%25' y='60' text-anchor='end' font-family='monospace' font-weight='bold' font-size='24' fill='%2322c55e' opacity='0.07'%3E0101010101010101%3C/text%3E%3Ctext x='100%25' y='90' text-anchor='end' font-family='monospace' font-weight='bold' font-size='24' fill='%2322c55e' opacity='0.07'%3E1101001011010010%3C/text%3E%3C/svg%3E");
+  
+  background-position: top 20px left 20px, bottom 20px right 20px;
+  background-size: 300px 150px, 300px 150px;
+}
+
+/* Custom scrollbar - Brutalist */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #000; 
+}
+
+::-webkit-scrollbar-thumb {
+  background: #333; 
+  border: 1px solid #000;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #22c55e; 
+}
+
+/* Utilities */
+.text-outline {
+  -webkit-text-stroke: 1px rgba(255,255,255,0.2);
+  color: transparent;
+}
+
+/* Hide scrollbar for carousel but allow functionality */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
