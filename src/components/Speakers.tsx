@@ -9,7 +9,7 @@ const speakers: Speaker[] = [
     role: "Эксперт по маркетингу, Предприниматель",
     company: "Стартапы в ЦА и MENA",
     image:
-      "https://tmf25.marketing.uz/uploads/speakers/74e9ca5c-9002-4b1f-80f7-1154a120fa5f.webp",
+      "/sher.webp",
     label: "jury",
   },
   {
@@ -52,6 +52,14 @@ const speakers: Speaker[] = [
     company: "Coca-Cola",
     image:
       "https://media.licdn.com/dms/image/v2/D4D03AQEPITK9ojIDBQ/profile-displayphoto-shrink_800_800/B4DZdQ8o8jHAAc-/0/1749409764019?e=1768435200&v=beta&t=oTR7mwccm1i1bPOSV9YNTuKNiCDcXSRieQ5FEsEVAnY",
+    label: "mentor",
+  },
+  {
+    id: "7",
+    name: "Рустам Гулов",
+    role: "Эксперт по цифровым коммуникациям и ИИ",
+    company: "",
+    image: "/rustam.jpg",
     label: "mentor",
   },
 ];
