@@ -17,7 +17,7 @@ const speakers: Speaker[] = [
     name: "Мустафо Файзов",
     role: "Lead Engineer",
     company: "EPAM, основатель @KOOLAI | ранее: Amazon, Яндекс",
-    image: "./public/mustafo.png",
+    image: "https://buildwithai.softclub.tj/mustafo.png",
     label: ["speaker", "mentor"],
   },
   {
@@ -25,7 +25,7 @@ const speakers: Speaker[] = [
     name: "Собир Бобиев",
     role: "Senior Data Scientist",
     company: "Alif | ex-Yandex",
-    image: "./public/sobir.jpg",
+    image: "https://buildwithai.softclub.tj/sobir.jpg",
     label: "mentor",
   },
   {
@@ -33,7 +33,7 @@ const speakers: Speaker[] = [
     name: "Ҷаҳонгир Ҷалолов",
     role: "Сооснователь",
     company: "Livo и Navbat",
-    image: "./public/jhongir.png",
+    image: "https://buildwithai.softclub.tj/jhongir.png",
     label: "mentor",
   },
   {
@@ -41,15 +41,17 @@ const speakers: Speaker[] = [
     name: "Хушанг Мирзо",
     role: "Старший инженер-разработчик",
     company: "Knowledge City",
-    image: "./public/khushang.jpg",
+    image: "https://buildwithai.softclub.tj/khushang.jpg",
     label: "mentor",
   },
+
   {
     id: "6",
     name: "Ксения Ким",
     role: "HRD Coca-Cola Таджикистан",
     company: "Coca-Cola",
-    image: "./public/KIM.JPG",
+    image:
+      "https://media.licdn.com/dms/image/v2/D4D03AQEPITK9ojIDBQ/profile-displayphoto-shrink_800_800/B4DZdQ8o8jHAAc-/0/1749409764019?e=1768435200&v=beta&t=oTR7mwccm1i1bPOSV9YNTuKNiCDcXSRieQ5FEsEVAnY",
     label: "mentor",
   },
 ];
@@ -76,7 +78,7 @@ const Speakers: React.FC = () => {
         {/* Header with Navigation Controls */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-10 md:mb-12 gap-4 sm:gap-5 md:gap-6">
           <div>
-            <div className="text-green-500 mb-2 uppercase tracking-widest text-xs">
+            <div className="text-green-500 font-mono mb-2 uppercase tracking-widest text-xs">
               &gt;&gt; Эксперты
             </div>
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-7xl font-black font-heading text-white uppercase tracking-tighter leading-none break-words">

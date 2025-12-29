@@ -78,7 +78,7 @@ const About: React.FC = () => {
         <div className="border-l border-r border-b border-white/20 py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-5 md:px-6 bg-[#050505]">
            <div className="text-center mb-16">
              <div className="text-green-500 font-mono mb-4 text-xs uppercase tracking-widest">
-                // Rewards
+                // Награды
              </div>
              <h3 className="text-4xl md:text-6xl font-black font-heading text-white uppercase tracking-tighter">
                Призовой Фонд
@@ -96,7 +96,7 @@ const About: React.FC = () => {
               {/* 1st Place */}
               <div className="order-1 md:order-2 border border-green-500 p-10 bg-green-500/5 hover:bg-green-500/10 transition-all text-center relative transform md:-translate-y-6 z-10">
                  <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-green-500 text-black font-bold font-mono text-xs px-4 py-1 uppercase tracking-widest">
-                   Winner
+                   Победитель
                  </div>
                  <div className="text-8xl font-black text-green-500/20 mb-8 group-hover:text-green-500/40 transition-colors">1</div>
                  <div className="text-sm font-mono text-green-500 uppercase tracking-widest mb-2 font-bold">Первое Место</div>

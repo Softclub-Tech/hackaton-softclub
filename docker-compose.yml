@@ -1,6 +1,8 @@
 services:
   hackaton-web:
-    image: tajievolimjon/hackaton-web
+    image: nurullo/hackaton-web
+    platform: linux/amd64 
+    build: ./  
     container_name: hackaton-web
     ports:
       - "3007:80"

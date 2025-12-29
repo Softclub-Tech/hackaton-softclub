@@ -4,43 +4,43 @@ import { Terminal, ArrowRight } from 'lucide-react';
 const Footer: React.FC = () => {
   return (
     <footer className="bg-black pt-12 sm:pt-16 md:pt-24 lg:pt-32 pb-6 sm:pb-8 md:pb-12 border-t border-white/20 relative overflow-hidden">
-
+      
       {/* Background Texture - Only in corners now */}
-      <div className="bg-corners-matrix opacity-30"></div>
-
+      <div className="bg-corners-matrix opacity-100"></div>
+      
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 relative z-10 w-full min-w-0">
-
+        
         {/* Main Center Piece - Matches the Poster Design */}
-        <div className="flex flex-col items-center justify-center text-center mb-12 sm:mb-16 md:mb-20 lg:mb-24">
+        <div className="flex flex-col items-center justify-center text-center mb-12 sm:mb-16 md:mb-20 lg:mb-24 relative">
            {/* BUILD WITH AI Typography */}
-           <h2 className="text-[36px] sm:text-[42px] md:text-[56px] lg:text-[80px] xl:text-[100px] leading-[0.8] font-black font-heading text-white uppercase tracking-tighter mb-8 sm:mb-12 md:mb-16 select-none break-words">
+           <h2 className="text-[36px] sm:text-[42px] md:text-[56px] lg:text-[80px] xl:text-[100px] leading-[0.8] font-black font-heading text-white uppercase tracking-tighter mb-8 sm:mb-12 md:mb-16 select-none break-words relative z-10">
              BUILD <span className="text-green-500">WITH</span> AI
            </h2>
-
+           
            {/* Centered Logos Row - Matching the Reference */}
            <div className="flex flex-wrap justify-center items-center gap-6 sm:gap-8 md:gap-12 lg:gap-24 opacity-100">
-
+             
              {/* OryonBank Logo - Reverted to Image as requested */}
-             <img
-               src="/oriyonbonk.svg"
-               alt="OryonBank"
-               className="h-6 sm:h-8 md:h-10 lg:h-16 w-auto brightness-0 invert"
+             <img 
+               src="/oriyonbonk.svg" 
+               alt="OryonBank" 
+               className="h-6 sm:h-8 md:h-10 lg:h-16 w-auto brightness-0 invert" 
              />
 
              {/* SoftClub Logo */}
              <div className="flex items-center gap-2 sm:gap-3">
-                <img
-                 src="https://www.softclub.tj/logo-softclub.svg"
-                 alt="SoftClub"
-                 className="h-5 sm:h-6 md:h-8 lg:h-12 w-auto brightness-0 invert"
+                <img 
+                 src="https://www.softclub.tj/logo-softclub.svg" 
+                 alt="SoftClub" 
+                 className="h-5 sm:h-6 md:h-8 lg:h-12 w-auto brightness-0 invert" 
                 />
              </div>
-
+             
            </div>
         </div>
-
+        
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 sm:gap-10 md:gap-12 mb-12 sm:mb-16 md:mb-20 border-t border-white/10 pt-8 sm:pt-12 md:pt-16 backdrop-blur-sm bg-black/20">
-
+          
           {/* Column 1: Status */}
           <div className="md:col-span-2">
              <div className="flex items-center gap-2 mb-4 sm:mb-5 md:mb-6 text-green-500">
@@ -52,7 +52,7 @@ const Footer: React.FC = () => {
                Главный офис Oriyonbonk.
              </p>
           </div>
-
+          
           {/* Column 2: Navigation */}
           <div>
             <h4 className="font-bold text-white mb-4 sm:mb-5 md:mb-6 uppercase tracking-wider font-heading text-sm sm:text-base">Меню</h4>
@@ -67,39 +67,39 @@ const Footer: React.FC = () => {
           <div>
             <h4 className="font-bold text-white mb-4 sm:mb-5 md:mb-6 uppercase tracking-wider font-heading text-sm sm:text-base">Контакты</h4>
             <div className="flex flex-col gap-3 sm:gap-4">
-              <a
-                href="https://t.me/softclubtj"
-                target="_blank"
+              <a 
+                href="https://t.me/softclubtj" 
+                target="_blank" 
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 sm:gap-3 text-slate-400 hover:text-green-500 transition-colors group"
               >
-                <img
-                  src="/telegram.svg"
-                  alt="Telegram"
+                <img 
+                  src="/telegram.svg" 
+                  alt="Telegram" 
                   className="w-4 h-4 sm:w-5 sm:h-5 brightness-0 invert opacity-60 group-hover:opacity-100 group-hover:brightness-0 group-hover:invert-[0.5] transition-all"
                 />
                 <span className="font-mono text-xs sm:text-sm">@softclubtj</span>
               </a>
-              <a
-                href="tel:+992557700900"
+              <a 
+                href="tel:+992558700900" 
                 className="flex items-center gap-2 sm:gap-3 text-slate-400 hover:text-green-500 transition-colors group"
               >
-                <img
-                  src="/phone.svg"
-                  alt="Phone"
+                <img 
+                  src="/phone.svg" 
+                  alt="Phone" 
                   className="w-4 h-4 sm:w-5 sm:h-5 brightness-0 invert opacity-60 group-hover:opacity-100 group-hover:brightness-0 group-hover:invert-[0.5] transition-all"
                 />
                 <span className="font-mono text-xs sm:text-sm">558700900</span>
               </a>
-              <a
-                href="https://instagram.com/softclub.tj"
-                target="_blank"
+              <a 
+                href="https://instagram.com/softclub.tj" 
+                target="_blank" 
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 sm:gap-3 text-slate-400 hover:text-green-500 transition-colors group"
               >
-                <img
-                  src="/instagram.svg"
-                  alt="Instagram"
+                <img 
+                  src="/instagram.svg" 
+                  alt="Instagram" 
                   className="w-4 h-4 sm:w-5 sm:h-5 brightness-0 invert opacity-60 group-hover:opacity-100 group-hover:brightness-0 group-hover:invert-[0.5] transition-all"
                 />
                 <span className="font-mono text-xs sm:text-sm">/softclub.tj</span>
