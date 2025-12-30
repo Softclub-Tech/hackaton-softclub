@@ -17,7 +17,7 @@ const speakers: Speaker[] = [
     name: "Мустафо Файзов",
     role: "Lead Engineer",
     company: "EPAM, основатель @KOOLAI | ранее: Amazon, Яндекс",
-    image: "/mustafo.png",
+    image: "/mustafo.jpg",
     label: ["speaker", "mentor"],
   },
   {
