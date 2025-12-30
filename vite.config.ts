@@ -13,12 +13,12 @@ export default defineConfig({
 
       manifest: {
         name: "Build with AI",
-        short_name: "BuildAI",
+        short_name: "BUILD WITH AI",
         start_url: "/",
         scope: "/",
         display: "standalone",
         background_color: "#000000",
-        theme_color: "#6d28d9",
+        theme_color: "#00ff41",
         description: "Build with AI — hackathon by Oriyonbonk and Softclub",
         icons: [
           {
