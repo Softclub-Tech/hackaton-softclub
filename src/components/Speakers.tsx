@@ -60,7 +60,7 @@ const speakers: Speaker[] = [
     role: "Эксперт по цифровым коммуникациям и ИИ",
     company: "Предпринимател",
     image: "/rustam.jpg",
-    label: "mentor",
+    label: "speaker",
   },
 ];
 
