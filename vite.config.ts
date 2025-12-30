@@ -13,7 +13,7 @@ export default defineConfig({
       includeAssets: ["favicon.svg"],
       manifest: {
         name: "Build with AI",
-        short_name: "BuildAI",
+        short_name: "BUILD WITH AI",
         start_url: "/",
         scope: "/",
         display: "standalone",
