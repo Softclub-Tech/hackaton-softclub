@@ -19,21 +19,20 @@ function cn(...classes: (string | undefined | null | false)[]) {
 
 /* ================= STYLES (Dark Mode & Green Accent) ================= */
 
-// Updated Input Style: Dark background, light text, green focus
 const INPUT_CLASS =
   "w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3.5 text-base text-white outline-none focus:border-green-500 focus:bg-white/10 focus:ring-1 focus:ring-green-500/50 transition-all placeholder:text-white/20";
 
-// Label Style: Slate-400
 const LABEL_CLASS =
   "block mb-2 text-sm font-mono text-slate-400 uppercase tracking-wider";
 
-// Button Style: Green accent
 const BUTTON_BASE =
   "inline-flex items-center justify-center whitespace-nowrap rounded-lg text-sm font-bold tracking-wide transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-500 disabled:pointer-events-none disabled:opacity-50";
 
 /* ================= TYPES & LOGIC ================= */
 
-const REGISTRATION_DEADLINE = new Date("2026-01-01T23:55:00");
+const REGISTRATION_DEADLINE = new Date("2026-01-02T12:00:00");
+
+// Проверка времени
 const isRegistrationClosed = () => new Date() > REGISTRATION_DEADLINE;
 
 type Member = {
@@ -255,6 +254,7 @@ export default function RegistrationPage() {
   };
 
   const handleSubmit = async () => {
+    // Двойная проверка на всякий случай
     if (isRegistrationClosed()) {
       return setError("Регистрация закрыта.");
     }
@@ -280,7 +280,6 @@ export default function RegistrationPage() {
       if (!isValidGithub(m.githubLink.trim())) {
         return setError(`Некорректный GitHub: Участник ${i + 1}`);
       }
-      // Note: Removed the trim check inside validation call if passed directly or handled
       if (!isValidLinkedIn(m.linkedinLink.trim())) {
         return setError(`Некорректный LinkedIn: Участник ${i + 1}`);
       }
@@ -336,10 +335,49 @@ export default function RegistrationPage() {
     }
   };
 
-  if (isSubmitted) {
+  // 2. ИЗМЕНЕНО: Если регистрация закрыта, показываем этот экран вместо формы
+  if (isRegistrationClosed()) {
     return (
       <section className="relative min-h-screen flex items-center justify-center bg-black overflow-hidden font-sans">
         {/* Background Grid */}
+        <div
+          className="absolute inset-0 pointer-events-none opacity-[0.15]"
+          style={{
+            backgroundImage: `linear-gradient(#333 1px, transparent 1px), linear-gradient(90deg, #333 1px, transparent 1px)`,
+            backgroundSize: "60px 60px",
+          }}
+        ></div>
+
+        <div className="relative z-10 max-w-md w-full bg-[#111] border border-white/10 rounded-2xl shadow-2xl p-8 text-center animate-in fade-in zoom-in duration-500">
+          <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-red-500/10 text-red-500 border border-red-500/20">
+            <AlertCircle className="h-8 w-8" />
+          </div>
+          <h1 className="text-3xl font-black text-white mb-2 tracking-tight">
+            Регистрация закрыта
+          </h1>
+          <p className="text-slate-400 mb-8 leading-relaxed">
+            К сожалению, прием заявок завершен. <br />
+            Дедлайн был: <strong className="text-white">02.01.2026</strong>
+          </p>
+          <Link to="/">
+            <button
+              className={cn(
+                BUTTON_BASE,
+                "w-full bg-white/5 hover:bg-white/10 text-white h-12 shadow-lg border border-white/10"
+              )}
+            >
+              Вернуться на главную
+            </button>
+          </Link>
+        </div>
+      </section>
+    );
+  }
+
+  // Экран успешной отправки (существующий код)
+  if (isSubmitted) {
+    return (
+      <section className="relative min-h-screen flex items-center justify-center bg-black overflow-hidden font-sans">
         <div
           className="absolute inset-0 pointer-events-none opacity-[0.15]"
           style={{
@@ -382,6 +420,7 @@ export default function RegistrationPage() {
     );
   }
 
+  // Основная форма (рендерится только если регистрация открыта)
   return (
     <section className="relative min-h-screen bg-black text-white font-sans selection:bg-green-500/30 py-10 px-4 md:px-8 overflow-hidden">
       {/* 1. TEXTURE LAYER: Grid (Matches Hero) */}
@@ -555,9 +594,8 @@ export default function RegistrationPage() {
                   <span>{count} участника</span>
 
                   <svg
-                    className={`h-4 w-4 text-white/40 transition-transform ${
-                      open ? "rotate-180" : ""
-                    }`}
+                    className={`h-4 w-4 text-white/40 transition-transform ${open ? "rotate-180" : ""
+                      }`}
                     viewBox="0 0 20 20"
                   >
                     <path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" />
