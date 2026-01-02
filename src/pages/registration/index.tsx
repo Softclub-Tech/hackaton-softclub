@@ -30,6 +30,7 @@ const BUTTON_BASE =
 
 /* ================= TYPES & LOGIC ================= */
 
+// ИЗМЕНЕНО: Дедлайн установлен на 02.01.2026 в 12:00:00
 const REGISTRATION_DEADLINE = new Date("2026-01-02T12:00:00");
 
 // Проверка времени
@@ -335,7 +336,7 @@ export default function RegistrationPage() {
     }
   };
 
-  // 2. ИЗМЕНЕНО: Если регистрация закрыта, показываем этот экран вместо формы
+  // ЕСЛИ РЕГИСТРАЦИЯ ЗАКРЫТА
   if (isRegistrationClosed()) {
     return (
       <section className="relative min-h-screen flex items-center justify-center bg-black overflow-hidden font-sans">
@@ -357,7 +358,8 @@ export default function RegistrationPage() {
           </h1>
           <p className="text-slate-400 mb-8 leading-relaxed">
             К сожалению, прием заявок завершен. <br />
-            Дедлайн был: <strong className="text-white">02.01.2026</strong>
+            Дедлайн был:{" "}
+            <strong className="text-white">02.01.2026 в 12:00</strong>
           </p>
           <Link to="/">
             <button
@@ -374,7 +376,7 @@ export default function RegistrationPage() {
     );
   }
 
-  // Экран успешной отправки (существующий код)
+  // Экран успешной отправки
   if (isSubmitted) {
     return (
       <section className="relative min-h-screen flex items-center justify-center bg-black overflow-hidden font-sans">
@@ -420,7 +422,7 @@ export default function RegistrationPage() {
     );
   }
 
-  // Основная форма (рендерится только если регистрация открыта)
+  // Основная форма
   return (
     <section className="relative min-h-screen bg-black text-white font-sans selection:bg-green-500/30 py-10 px-4 md:px-8 overflow-hidden">
       {/* 1. TEXTURE LAYER: Grid (Matches Hero) */}
