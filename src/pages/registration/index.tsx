@@ -30,11 +30,9 @@ const BUTTON_BASE =
 
 /* ================= TYPES & LOGIC ================= */
 
-// ИЗМЕНЕНО: Дедлайн установлен на 02.01.2026 в 12:00:00
-const REGISTRATION_DEADLINE = new Date("2026-01-02T12:00:00");
+const REGISTRATION_DEADLINE = new Date("2026-01-02T12:00:00+05:00");
+const isRegistrationClosed = () => Date.now() > REGISTRATION_DEADLINE.getTime();
 
-// Проверка времени
-const isRegistrationClosed = () => new Date() > REGISTRATION_DEADLINE;
 
 type Member = {
   fullName: string;
